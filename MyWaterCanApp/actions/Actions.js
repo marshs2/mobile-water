@@ -7,7 +7,16 @@ import {
     Button
   } from 'react-native';
   import { connect } from 'react-redux';
-  
+
+  export function initialState() {
+    return { type: 'INITIALSTATE' }
+  }
+export function canIncrementer() {
+    return { type: 'CANINCREMENT' }
+}
+export function canDecrementer() {
+    return { type: 'CANDECREMENT' }
+}
 export function counterIncrementer() {
   return { type: 'INCREMENT' }
 }
@@ -26,6 +35,21 @@ export function counterFetchingSucess(value) {
             isLoading: false,
             value: value
     }
+}
+export function signUp() {
+    return (dispatch) => {
+        dispatch(isLoading(true));
+        fetch("https://private-8f060a-mileupapidocument.apiary-mock.com/getValue")
+            .then((response) => {
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+                return response.json()
+                // return response;
+            })
+            .then((value) => dispatch(counterFetchingSucess(value)))
+            .catch(() => dispatch(isLoading(false)));
+    };
 }
 
 export function fetchCounter() {

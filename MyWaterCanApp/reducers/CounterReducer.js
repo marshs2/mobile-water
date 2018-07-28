@@ -12,6 +12,33 @@ export function reducer(state=0, action) {
     }
   }
 
+  export function masterReducer(state={}, action) {
+    switch(action.type) {
+      case 'INITIALSTATE':
+      return {
+        canQuantity: 30,
+        canUnit: 'Litres',
+        canCount: 1
+      }
+      case 'CANINCREMENT':
+       return Object.assign({},state,{canCount: canCountHandler(state.canCount,action)});
+       case 'CANDECREMENT':
+       return Object.assign({},state,{canCount: canCountHandler(state.canCount,action)});             
+      default:
+        return state;
+    }
+  }
+  export function canCountHandler(state,action) {
+    switch(action.type) {
+     case 'CANINCREMENT':
+        return state + 1
+     case 'CANDECREMENT':
+        return state - 1;
+      default:
+        return state;
+    }
+  }
+
   export function fetchCounter(state=false,action) {
     switch(action.type) {
      case 'ISLOADING':
