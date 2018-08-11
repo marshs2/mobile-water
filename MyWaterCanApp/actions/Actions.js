@@ -8,21 +8,21 @@ import {
   } from 'react-native';
   import { connect } from 'react-redux';
 
-  export function initialState() {
-    return { type: 'INITIALSTATE' }
+  export function initialLoad() {
+    return { type: 'INITIAL_STATE' }
   }
 export function canIncrementer() {
-    return { type: 'CANINCREMENT' }
+    return { type: 'CAN_INCREMENT' }
 }
 export function canDecrementer() {
-    return { type: 'CANDECREMENT' }
+    return { type: 'CAN_DECREMENT' }
 }
-export function counterIncrementer() {
-  return { type: 'INCREMENT' }
-}
-export function counterDecrementer() {
-    return { type: 'DECREMENT' }
-}
+// export function counterIncrementer() {
+//   return { type: 'INCREMENT' }
+// }
+// export function counterDecrementer() {
+//     return { type: 'DECREMENT' }
+// }
 
 export function isLoading(mIsLoading) {
     return { type: 'ISLOADING',
@@ -36,23 +36,23 @@ export function counterFetchingSucess(value) {
             value: value
     }
 }
-export function signUp() {
-    return (dispatch) => {
-        dispatch(isLoading(true));
-        fetch("https://private-8f060a-mileupapidocument.apiary-mock.com/getValue")
-            .then((response) => {
-                if (!response.ok) {
-                    throw Error(response.statusText);
-                }
-                return response.json()
-                // return response;
-            })
-            .then((value) => dispatch(counterFetchingSucess(value)))
-            .catch(() => dispatch(isLoading(false)));
-    };
-}
+// export function signUp() {
+//     return (dispatch) => {
+//         dispatch(isLoading(true));
+//         fetch("https://private-8f060a-mileupapidocument.apiary-mock.com/getValue")
+//             .then((response) => {
+//                 if (!response.ok) {
+//                     throw Error(response.statusText);
+//                 }
+//                 return response.json()
+//                 // return response;
+//             })
+//             .then((value) => dispatch(counterFetchingSucess(value)))
+//             .catch(() => dispatch(isLoading(false)));
+//     };
+// }
 
-export function fetchCounter() {
+export function bookNow() {
     return (dispatch) => {
         dispatch(isLoading(true));
         fetch("https://private-8f060a-mileupapidocument.apiary-mock.com/getValue")

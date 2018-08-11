@@ -11,8 +11,8 @@ import {
   Text,
   View
 } from 'react-native';
-import Counter from './components/Counter'
 import CanSelection from'./components/BookingModule/CanSelection'
+import BookingModule from './components/BookingModule'
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { 
@@ -21,13 +21,6 @@ import {
   combineReducers 
 } from 'redux';
 import {reducer,fetchCounter,testing,masterReducer} from './reducers/CounterReducer';
-
-
-const reducers = combineReducers({
- reducer,
- fetchCounter,
- testing
-});
 
 const store = createStore(
   masterReducer,
@@ -40,7 +33,7 @@ export default class App extends Component<Props> {
     return (
       <View style = {styles.container} >
         <Provider store={store}>
-          <CanSelection/>
+          <BookingModule />
         </Provider>
       </View>
     );
