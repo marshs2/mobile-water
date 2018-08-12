@@ -3,12 +3,11 @@ import {
     Platform,
     StyleSheet,
     Text,
-    View,
-    Button
+    View
   } from 'react-native';
   import { CheckBox } from 'react-native-elements'
   import { connect } from 'react-redux';
-  import {counterIncrementer,counterDecrementer,fetchCounter} from '../../actions/Actions'
+//  import { emergencyChange } from '../../actions/Actions'
  export class EmergencyBooking extends React.Component {
 
 
@@ -18,24 +17,21 @@ import {
                 <CheckBox
                     center
                     title='Emergency Booking'
-                    checked={this.props.checked}
+                    checked={this.props.emergency}
+                    onPress={this.props.emergencyChange}
                 />
             </View>
         )
     }
 }
-const mapDispatchToProps = (dispatch) => {
-    return {
-        increment: () => dispatch(counterIncrementer()),
-        decrement: () => dispatch(counterDecrementer()),
-        fetch: () => dispatch(fetchCounter())
-    };
-};
-function mapStateToProps(state) {
-    return {
-      count: state.reducer,
-      testing: state.testing,
-      isloading: state.fetchCounter
-    };
-  }
-export default connect(mapStateToProps, mapDispatchToProps)(EmergencyBooking);
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         emergencyChange: () => dispatch(emergencyChange())
+//     };
+// };
+// function mapStateToProps(state) {
+//     return {
+//       emergency: state.emergency
+//     };
+//   }
+// export default connect(mapStateToProps, mapDispatchToProps)(EmergencyBooking);

@@ -3,25 +3,25 @@ import {
     Platform,
     StyleSheet,
     Text,
-    View,
-    Button
+    View
   } from 'react-native';
-  import { CheckBox } from 'react-native-elements'
+  import { CheckBox, Button } from 'react-native-elements'
   import { connect } from 'react-redux';
-  import {counterIncrementer,counterDecrementer,fetchCounter, initialLoad} from '../actions/Actions';
+  import {canIncrementer,canDecrementer,fetchCounter, initialLoad, emergencyChange, bookNow} from '../actions/Actions';
   import { CanQuantity } from './common/CanQuantity';
   import { EmergencyBooking } from './common/EmergencyBooking';
  class BookingModule extends React.Component {
 
-     componentDidMount() {
-         this.props.initialLoad();
-     }
+    componentDidMount() {
+        this.props.initialLoad();
+    }
+
     render() {
         return (
             <View>
                 <Text>How many {this.props.quantity} {this.props.unit} do you want?</Text>
-                <CanQuantity />
-                <EmergencyBooking />
+                <CanQuantity increment={this.props.increment} decrement={this.props.decrement} count={ this.props.count } />
+                <EmergencyBooking emergency={this.props.emergency} emergencyChange={this.props.emergencyChange}/>
                 <Button title = 'Book Now' onPress = {this.props.bookNow}></Button>
             </View>
         )
@@ -31,13 +31,18 @@ import {
 const mapDispatchToProps = (dispatch) => {
     return {
         initialLoad: () => dispatch(initialLoad()),
-        bookNow: () => dispatch(bookNow())
+        bookNow: () => dispatch(bookNow()),
+        increment: () => dispatch(canIncrementer()),
+        decrement: () => dispatch(canDecrementer()),
+        emergencyChange: () => dispatch(emergencyChange())
     };
 };
 function mapStateToProps(state) {
     return {
       quantity: state.canQuantity,
-      unit: state.canUnit
+      unit: state.canUnit,
+      count: state.canCount,
+      emergency: state.emergency
     };
   }
 export default connect(mapStateToProps, mapDispatchToProps)(BookingModule);
