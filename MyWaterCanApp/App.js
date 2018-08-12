@@ -27,13 +27,24 @@ const store = createStore(
   applyMiddleware(thunk)
 );
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  navigateToUserLocation = () => {
+      this.props.navigator.push({
+          screen: 'UserLocationScreen',
+          title: 'User Location'
+      });
+  }
+
   render() {
     return (
       <View style = {styles.container} >
         <Provider store={store}>
-          <BookingModule />
+          <BookingModule navigateToUserLocation={this.navigateToUserLocation}/>
         </Provider>
       </View>
     );

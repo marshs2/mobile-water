@@ -12,8 +12,17 @@ import {
   import { EmergencyBooking } from './common/EmergencyBooking';
  class BookingModule extends React.Component {
 
+    //  constructor (props) {
+    //     super(props);
+    //     this.navigateToUserLocation = this.navigateToUserLocation.bind(this);
+    //  }
+
     componentDidMount() {
         this.props.initialLoad();
+    }
+
+    bookNowHandler = () => {
+        this.props.navigateToUserLocation();
     }
 
     render() {
@@ -22,7 +31,7 @@ import {
                 <Text>How many {this.props.quantity} {this.props.unit} do you want?</Text>
                 <CanQuantity increment={this.props.increment} decrement={this.props.decrement} count={ this.props.count } />
                 <EmergencyBooking emergency={this.props.emergency} emergencyChange={this.props.emergencyChange}/>
-                <Button title = 'Book Now' onPress = {this.props.bookNow}></Button>
+                <Button title = 'Book Now' onPress = {this.bookNowHandler} ></Button>
             </View>
         )
     }

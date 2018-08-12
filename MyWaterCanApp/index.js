@@ -1,7 +1,7 @@
-import { AppRegistry } from 'react-native';
-import App from './App';
+// import { AppRegistry } from 'react-native';
+// import App from './App';
 
-AppRegistry.registerComponent('MyWaterCanApp', () => App);
+// AppRegistry.registerComponent('MyWaterCanApp', () => App);
 
 // import { Navigation } from 'react-native-navigation'; 
 // import App from './App';
@@ -17,4 +17,38 @@ AppRegistry.registerComponent('MyWaterCanApp', () => App);
 //         }
 //         }
 //     }) 
+// });
+
+import { Navigation } from 'react-native-navigation';
+
+import App from './App';
+import UserLocation from './components/UserLocationModule/UserLocation';
+
+// import { registerScreens } from './screens';
+
+// registerScreens(); // this is where you register all of your app's screens
+
+// start the app
+  Navigation.registerComponent('App', () => App);
+  Navigation.registerComponent('UserLocationScreen', () => UserLocation);
+
+  Navigation.startTabBasedApp({
+    tabs: [
+      {
+        label: 'One',
+        screen: 'App',
+        title: 'App'
+      },
+      {
+        label: 'Two',
+        screen: 'UserLocationScreen',
+        title: 'User Location'
+      }
+    ]
+  });
+
+
+// this.props.navigator.push({
+//     screen: 'Screen1',
+//     title: 'Screen 1',
 // });
