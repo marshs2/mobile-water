@@ -19,7 +19,7 @@ export class CanQuantity extends React.Component {
                 <Text>{this.props.count}</Text>
                 <Button title = '>' onPress = {this.props.increment}></Button>*/}
                 <Button title = '<' onPress = {this.props.decrement}></Button>
-                <Text style={styles.counterStyle}>{this.props.canCount}</Text>
+                <Text style={styles.counterStyle}>{this.props.count}</Text>
                 <Button title = '>' onPress = {this.props.increment}></Button>
             </View>
         )
@@ -32,16 +32,16 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
   });
-const mapDispatchToProps = (dispatch) => {
-    return {
-        increment: () => dispatch(canIncrementer()),
-        decrement: () => dispatch(canDecrementer()),
-    };
-};
-function mapStateToProps(state) {
-    console.log('Inital State', state);
-    return {
-        canCount: state.canCount
-    };
-  }
-export default connect(mapStateToProps, mapDispatchToProps)(CanQuantity);
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         increment: () => dispatch(canIncrementer()),
+//         decrement: () => dispatch(canDecrementer()),
+//     };
+// };
+// function mapStateToProps(state) {
+//     console.log('Inital State', state);
+//     return {
+//         canCount: state.canCount
+//     };
+//   }
+// export default connect(mapStateToProps, mapDispatchToProps)(CanQuantity);

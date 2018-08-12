@@ -6,16 +6,20 @@ import {
     View,
     Button
   } from 'react-native';
-  import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
-  export function initialLoad() {
-    return { type: 'INITIAL_STATE' }
-  }
+export function loadValue(value) {
+return { type: 'INITIAL_STATE', value }
+}
 export function canIncrementer() {
     return { type: 'CAN_INCREMENT' }
 }
 export function canDecrementer() {
     return { type: 'CAN_DECREMENT' }
+}
+
+export function emergencyChange() {
+    return { type: 'EMERGENCY_CHANGE' }
 }
 // export function counterIncrementer() {
 //   return { type: 'INCREMENT' }
@@ -36,10 +40,28 @@ export function counterFetchingSucess(value) {
             value: value
     }
 }
-// export function signUp() {
+export function initialLoad() {
+    return (dispatch) => {
+        fetch("http://ec2-13-127-170-233.ap-south-1.compute.amazonaws.com/api/v1/getCan")
+            .then((response) => {
+                console.log('response', response);
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+                return response.json()
+                // return response;
+            })
+            .then((value) => {
+                return  dispatch(loadValue(value))
+            })
+            .catch((error) => console.log('errorx', error));
+    };
+}
+
+// export function bookNow() {
 //     return (dispatch) => {
-//         dispatch(isLoading(true));
-//         fetch("https://private-8f060a-mileupapidocument.apiary-mock.com/getValue")
+//         // dispatch(isLoading(true));
+//         fetch("http://ec2-13-127-170-233.ap-south-1.compute.amazonaws.com/api/v1/getCan")
 //             .then((response) => {
 //                 if (!response.ok) {
 //                     throw Error(response.statusText);
@@ -51,19 +73,3 @@ export function counterFetchingSucess(value) {
 //             .catch(() => dispatch(isLoading(false)));
 //     };
 // }
-
-export function bookNow() {
-    return (dispatch) => {
-        dispatch(isLoading(true));
-        fetch("https://private-8f060a-mileupapidocument.apiary-mock.com/getValue")
-            .then((response) => {
-                if (!response.ok) {
-                    throw Error(response.statusText);
-                }
-                return response.json()
-                // return response;
-            })
-            .then((value) => dispatch(counterFetchingSucess(value)))
-            .catch(() => dispatch(isLoading(false)));
-    };
-}
