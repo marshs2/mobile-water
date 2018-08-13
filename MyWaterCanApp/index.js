@@ -1,43 +1,30 @@
-// import { AppRegistry } from 'react-native';
-// import App from './App';
-
-// AppRegistry.registerComponent('MyWaterCanApp', () => App);
-
-// import { Navigation } from 'react-native-navigation'; 
-// import App from './App';
-
-// Navigation.registerComponent(navigation.playground.WelcomeScreen, () => App);
-
-// Navigation.events().registerAppLaunchedListener(() => {
-
-//     Navigation.setRoot({
-//         root: {
-//         component: {
-//         name: "navigation.playground.WelcomeScreen"
-//         }
-//         }
-//     }) 
-// });
-
 import { Navigation } from 'react-native-navigation';
+import { registerScreens } from './screens';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import {reducer,fetchCounter,testing,masterReducer} from './reducers/CounterReducer';
 
-import App from './App';
-import UserLocation from './components/UserLocationModule/UserLocation';
+import { 
+  createStore, 
+  applyMiddleware, 
+  combineReducers 
+} from 'redux';
 
-// import { registerScreens } from './screens';
+const store = createStore(
+  masterReducer,
+  applyMiddleware(thunk)
+);
 
-// registerScreens(); // this is where you register all of your app's screens
 
 // start the app
-  Navigation.registerComponent('App', () => App);
-  Navigation.registerComponent('UserLocationScreen', () => UserLocation);
+registerScreens(store, Provider);
 
-  Navigation.startTabBasedApp({
+Navigation.startTabBasedApp({
     tabs: [
       {
         label: 'One',
-        screen: 'App',
-        title: 'App',
+        screen: 'BookingModuleScreen',
+        title: 'Book Can',
         icon: require('./images/water.png')
       },
       {
@@ -47,10 +34,4 @@ import UserLocation from './components/UserLocationModule/UserLocation';
         icon: require('./images/water.png')
       }
     ]
-  });
-
-
-// this.props.navigator.push({
-//     screen: 'Screen1',
-//     title: 'Screen 1',
-// });
+});

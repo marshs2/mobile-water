@@ -5,29 +5,28 @@ import {
     Text,
     View
   } from 'react-native';
-  import { CheckBox, Button } from 'react-native-elements'
+  import { CheckBox, Button } from 'react-native-elements';
   import { connect } from 'react-redux';
   import {canIncrementer,canDecrementer,fetchCounter, initialLoad, emergencyChange, bookNow} from '../actions/Actions';
   import { CanQuantity } from './common/CanQuantity';
   import { EmergencyBooking } from './common/EmergencyBooking';
  class BookingModule extends React.Component {
 
-    //  constructor (props) {
-    //     super(props);
-    //     this.navigateToUserLocation = this.navigateToUserLocation.bind(this);
-    //  }
 
     componentDidMount() {
         this.props.initialLoad();
     }
 
     bookNowHandler = () => {
-        this.props.navigateToUserLocation();
+      this.props.navigator.push({
+          screen: 'UserLocationScreen',
+          title: 'User Location'
+      });
     }
 
     render() {
         return (
-            <View>
+            <View style = {styles.container}>
                 <Text>How many {this.props.quantity} {this.props.unit} do you want?</Text>
                 <CanQuantity increment={this.props.increment} decrement={this.props.decrement} count={ this.props.count } />
                 <EmergencyBooking emergency={this.props.emergency} emergencyChange={this.props.emergencyChange}/>
@@ -54,4 +53,25 @@ function mapStateToProps(state) {
       emergency: state.emergency
     };
   }
+
+  
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#F5FCFF',
+    },
+    welcome: {
+      fontSize: 20,
+      textAlign: 'center',
+      margin: 10,
+    },
+    instructions: {
+      textAlign: 'center',
+      color: '#333333',
+      marginBottom: 5,
+    },
+  });
 export default connect(mapStateToProps, mapDispatchToProps)(BookingModule);
