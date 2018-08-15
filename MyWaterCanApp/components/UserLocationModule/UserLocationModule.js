@@ -1,13 +1,41 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View } from 'react-native';
 
 class UserLocation extends Component {
 
   render() {
     return (
-      <Text>User Location</Text>
+      <View style={styles.container}>
+        <Text>User Location</Text>
+
+        <Text>Google Search Input Module</Text>
+        <Text>Map Component</Text>
+      </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
+});
 
 export default UserLocation;
