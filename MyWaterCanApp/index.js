@@ -22,15 +22,9 @@ registerScreens(store, Provider);
 Navigation.startTabBasedApp({
     tabs: [
       {
-        label: 'One',
+        label: 'Book Now',
         screen: 'BookingModuleScreen',
         title: 'Book Can',
-        icon: require('./images/water.png')
-      },
-      {
-        label: 'Two',
-        screen: 'UserLocationScreen',
-        title: 'User Location',
         icon: require('./images/water.png')
       }
     ]

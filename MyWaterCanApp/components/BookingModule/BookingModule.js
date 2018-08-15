@@ -7,9 +7,9 @@ import {
   } from 'react-native';
   import { CheckBox, Button } from 'react-native-elements';
   import { connect } from 'react-redux';
-  import {canIncrementer,canDecrementer,fetchCounter, initialLoad, emergencyChange, bookNow} from '../actions/Actions';
-  import { CanQuantity } from './common/CanQuantity';
-  import { EmergencyBooking } from './common/EmergencyBooking';
+  import {canIncrementer,canDecrementer,fetchCounter, initialLoad, emergencyChange, bookNow} from '../../actions/Actions';
+  import { CanQuantity } from '../common/CanQuantity';
+  import { EmergencyBooking } from '../common/EmergencyBooking';
  class BookingModule extends React.Component {
 
 
