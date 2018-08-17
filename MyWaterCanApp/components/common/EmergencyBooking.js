@@ -6,10 +6,7 @@ import {
     View
   } from 'react-native';
   import { CheckBox } from 'react-native-elements'
-  import { connect } from 'react-redux';
-//  import { emergencyChange } from '../../actions/Actions'
  export class EmergencyBooking extends React.Component {
-
 
     render() {
         return (
@@ -24,14 +21,3 @@ import {
         )
     }
 }
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         emergencyChange: () => dispatch(emergencyChange())
-//     };
-// };
-// function mapStateToProps(state) {
-//     return {
-//       emergency: state.emergency
-//     };
-//   }
-// export default connect(mapStateToProps, mapDispatchToProps)(EmergencyBooking);

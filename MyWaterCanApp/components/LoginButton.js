@@ -6,7 +6,6 @@ import {
     View,
     Button
   } from 'react-native';
-  import { connect } from 'react-redux';
   import {signUp} from '../actions/Actions'
  class Counter extends React.Component {
 

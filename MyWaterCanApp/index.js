@@ -2,12 +2,11 @@ import { Navigation } from 'react-native-navigation';
 import { registerScreens } from './screens';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import {reducer,fetchCounter,testing,masterReducer} from './reducers/CounterReducer';
+import {masterReducer} from './reducers/CounterReducer';
 
 import { 
   createStore, 
-  applyMiddleware, 
-  combineReducers 
+  applyMiddleware 
 } from 'redux';
 
 const store = createStore(
@@ -25,8 +24,8 @@ Navigation.startTabBasedApp({
         label: 'Book Now',
         screen: 'BookingModuleScreen',
         title: 'Book Can',
-        icon: require('./images/water.png'),
-        // selectedIcon: require('./images/water.png')
+        // icon: require('./images/water.png'),
+        selectedIcon: require('./images/water.png')
       }
     ]
 });
