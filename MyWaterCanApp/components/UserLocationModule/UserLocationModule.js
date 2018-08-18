@@ -6,7 +6,16 @@ import {
   View } from 'react-native';
 import { SearchPlaces } from '../common/SearchPlaces';
 
+import {getGPSLocation} from '../../services/GPSServices';
+
 class UserLocation extends Component {
+
+  constructor(props){
+    super(props);
+  }
+  componentDidMount(){
+   getGPSLocation();
+  }
 
   render() {
     return (
