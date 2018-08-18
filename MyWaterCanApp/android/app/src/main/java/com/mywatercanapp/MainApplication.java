@@ -9,6 +9,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.reactnativenavigation.NavigationApplication;
+import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,6 +30,7 @@ protected List<ReactPackage> getPackages() {
   return Arrays.<ReactPackage>asList(
       /* new MainReactPackage(),
         new VectorIconsPackage() */
+        new RNFusedLocationPackage()
   );
 }    
 
@@ -49,4 +51,6 @@ public void onCreate() {
   super.onCreate();
   SoLoader.init(this, /* native exopackage */ false);
 }
+
+
 }
