@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Text,
   View } from 'react-native';
+import { SearchPlaces } from '../common/SearchPlaces';
 
 class UserLocation extends Component {
 
@@ -12,7 +13,7 @@ class UserLocation extends Component {
       <View style={styles.container}>
         <Text>User Location</Text>
 
-        <Text>Google Search Input Module</Text>
+        <SearchPlaces />
         <Text>Map Component</Text>
       </View>
     );
