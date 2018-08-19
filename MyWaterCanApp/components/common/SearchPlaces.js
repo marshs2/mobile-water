@@ -7,6 +7,11 @@ const homePlace = { description: 'Home', geometry: { location: { lat: 48.8152937
 const workPlace = { description: 'Work', geometry: { location: { lat: 48.8496818, lng: 2.2940881 } }};
 
 export const SearchPlaces = () => {
+
+  currentLocationSuccessAction = (details) => {
+    this.props.currentLocationSuccessAction({latitude:details.geometry.location.lat ,longitude:details.geometry.location.lng})
+  }
+  
   return (
     <GooglePlacesAutocomplete
       placeholder='Where to deliver Water?'
@@ -18,6 +23,7 @@ export const SearchPlaces = () => {
       renderDescription={row => row.description} // custom description render
       onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
         debugger;
+        this.currentLocationSuccessAction(details);
         console.log(data, details);
       }}
       

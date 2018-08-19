@@ -21,12 +21,6 @@ export function canDecrementer() {
 export function emergencyChange() {
     return { type: 'EMERGENCY_CHANGE' }
 }
-// export function counterIncrementer() {
-//   return { type: 'INCREMENT' }
-// }
-// export function counterDecrementer() {
-//     return { type: 'DECREMENT' }
-// }
 
 export function isLoading(mIsLoading) {
     return { type: 'ISLOADING',
@@ -38,6 +32,18 @@ export function counterFetchingSucess(value) {
     return { type: 'COUNTERSUCESS',
             isLoading: false,
             value: value
+    }
+}
+
+export function currentLocationUpdate(value) {
+    debugger;
+    if (value) {
+        return { type: 'CURRENT_LOCATION',
+            latitude: value.latitude,
+            longitude: value.longitude
+        }
+    } else {
+        return { type: 'NA'};
     }
 }
 export function initialLoad() {

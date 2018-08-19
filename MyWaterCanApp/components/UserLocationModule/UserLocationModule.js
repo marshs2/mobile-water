@@ -4,10 +4,12 @@ import {
   StyleSheet,
   Text,
   View } from 'react-native';
+  import { connect } from 'react-redux';
 import { SearchPlaces } from '../common/SearchPlaces';
 
 import {getGPSLocation} from '../../services/GPSServices';
 import MapView from '../common/MapView';
+import {currentLocationUpdate} from '../../actions/Actions'
 
 class UserLocation extends Component {
   
@@ -16,18 +18,30 @@ class UserLocation extends Component {
     
   }
   componentDidMount(){
-   getGPSLocation();
+    getGPSLocation(this.props.currentLocationSuccessAction);
   }
 
   render() {
     return (
     <View style =  {styles.container}>
-     <MapView style = {styles.mapView}>
-    </MapView>
+    <SearchPlaces currentLocationSuccessAction={this.props.currentLocationSuccessAction}/>
+     <MapView currentUserLocation={this.props.currentUserLocation} />
      </View>
     );
   }
 }
+const mapDispatchToProps = (dispatch) => {
+  return {
+      currentLocationSuccessAction: () => dispatch(currentLocationUpdate()),
+  };
+};
+function mapStateToProps(state) {
+  debugger;
+  return {
+    currentUserLocation : state.currentUserLocation
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(UserLocation);
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
@@ -44,14 +58,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
     height: 400
   },
-  mapView: {
-    // height: 400,
-    // backgroundColor: 'blue',
-    // flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // backgroundColor: '#F5FCFF',
-  },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
@@ -63,5 +69,3 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
-
-export default UserLocation;
