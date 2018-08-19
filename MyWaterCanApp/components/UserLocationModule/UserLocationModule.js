@@ -4,14 +4,16 @@ import {
   StyleSheet,
   Text,
   View } from 'react-native';
+import { SearchPlaces } from '../common/SearchPlaces';
 
 import {getGPSLocation} from '../../services/GPSServices';
-import MapView from 'react-native-maps';
+import MapView from '../common/MapView';
 
 class UserLocation extends Component {
-
+  
   constructor(props){
     super(props);
+    
   }
   componentDidMount(){
    getGPSLocation();
@@ -19,37 +21,36 @@ class UserLocation extends Component {
 
   render() {
     return (
-      <MapView style={styles.container}
-    initialRegion={{
-      latitude: 37.78825,
-      longitude: -122.4324,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-    }}
-  />
-  //     <View style={styles.container}>
-  //      <MapView style={styles.container}
-  //   initialRegion={{
-  //     latitude: 37.78825,
-  //     longitude: -122.4324,
-  //     latitudeDelta: 0.0922,
-  //     longitudeDelta: 0.0421,
-  //   }}
-  // />
-  //       <Text>User Location</Text>
-
-  //       <Text>Google Search Input Module</Text>
-  //       <Text>Map Component</Text>
-  //     </View>
+    <View style =  {styles.container}>
+     <MapView style = {styles.mapView}>
+    </MapView>
+     </View>
     );
   }
 }
 const styles = StyleSheet.create({
   container: {
+    // flex: 1,
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    height: '100%',
+    width: '100%',
+    backgroundColor: 'red',
+  },
+  searchPlaces: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+    height: 400
+  },
+  mapView: {
+    // height: 400,
+    // backgroundColor: 'blue',
+    // flex: 1,
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // backgroundColor: '#F5FCFF',
   },
   welcome: {
     fontSize: 20,
