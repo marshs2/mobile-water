@@ -6,6 +6,7 @@ import {
   View } from 'react-native';
 
 import {getGPSLocation} from '../../services/GPSServices';
+import MapView from 'react-native-maps';
 
 class UserLocation extends Component {
 
@@ -18,16 +19,31 @@ class UserLocation extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>User Location</Text>
+      <MapView style={styles.container}
+    initialRegion={{
+      latitude: 37.78825,
+      longitude: -122.4324,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+    }}
+  />
+  //     <View style={styles.container}>
+  //      <MapView style={styles.container}
+  //   initialRegion={{
+  //     latitude: 37.78825,
+  //     longitude: -122.4324,
+  //     latitudeDelta: 0.0922,
+  //     longitudeDelta: 0.0421,
+  //   }}
+  // />
+  //       <Text>User Location</Text>
 
-        <Text>Google Search Input Module</Text>
-        <Text>Map Component</Text>
-      </View>
+  //       <Text>Google Search Input Module</Text>
+  //       <Text>Map Component</Text>
+  //     </View>
     );
   }
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
