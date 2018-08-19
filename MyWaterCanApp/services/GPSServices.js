@@ -1,4 +1,4 @@
-// import {Geolocation} from 'react-native';
+import {Platform} from 'react-native';
 import {requestGPSPermission} from './Permissions';
 import Geolocation from 'react-native-geolocation-service';
 const config = {
@@ -26,7 +26,10 @@ function GPSHandler(){
 
 export async function getGPSLocation(){
     // Calling asynchronous funciton with the success call back
-    let gps = await requestGPSPermission();
+    let gps = 'granted';
+    if (Platform.OS === 'android') {
+        gps = await requestGPSPermission();
+    }
     if(gps === "granted"){
         GPSHandler();
     }

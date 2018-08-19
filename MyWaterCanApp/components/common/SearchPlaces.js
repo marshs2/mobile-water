@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Image, Text } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import constants from '../../constants/constants';
 
 const homePlace = { description: 'Home', geometry: { location: { lat: 48.8152937, lng: 2.4597668 } }};
 const workPlace = { description: 'Work', geometry: { location: { lat: 48.8496818, lng: 2.2940881 } }};
@@ -24,9 +25,9 @@ export const SearchPlaces = () => {
       
       query={{
         // available options: https://developers.google.com/places/web-service/autocomplete
-        key: 'AIzaSyBM6Hjsj-tfs_dvFHbXGJ7QAXXvxz4SJ9U', // mine -> 'AIzaSyBM6Hjsj-tfs_dvFHbXGJ7QAXXvxz4SJ9U', others -> //AIzaSyC2QhtACfVZ2cr9HVvxQuzxd3HT36NNK3Q
+        key: constants.API_KEY, //AIzaSyBXSuOnKD1jTWv6RsZVKK6qqBuevq1dNCU // mine -> 'AIzaSyBM6Hjsj-tfs_dvFHbXGJ7QAXXvxz4SJ9U', others -> //AIzaSyC2QhtACfVZ2cr9HVvxQuzxd3HT36NNK3Q
         language: 'en', // language of the results
-        types: '(regions)', // default: 'geocode'
+        // types: '(regions)', // default: 'geocode'
         componentRestrictions: {country: "IN"}
       }}
       
@@ -58,7 +59,7 @@ export const SearchPlaces = () => {
       filterReverseGeocodingByTypes={['sublocality', 'administrative_area_level_1', 'locality', 'administrative_area_level_3', 'administrative_area_level_2']}
       // predefinedPlaces={[homePlace, workPlace]}
 
-      debounce={500} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
+      debounce={2000} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
       // renderLeftButton={()  => <Image source={require('path/custom/left-icon')} />}
       // renderRightButton={() => <Text>Custom text after the input</Text>}
     />
