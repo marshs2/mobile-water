@@ -6,11 +6,7 @@ import constants from '../../constants/constants';
 const homePlace = { description: 'Home', geometry: { location: { lat: 48.8152937, lng: 2.4597668 } }};
 const workPlace = { description: 'Work', geometry: { location: { lat: 48.8496818, lng: 2.2940881 } }};
 
-export const SearchPlaces = () => {
-
-  currentLocationSuccessAction = (details) => {
-    this.props.currentLocationSuccessAction({latitude:details.geometry.location.lat ,longitude:details.geometry.location.lng})
-  }
+export const SearchPlaces = (props) => {
   
   return (
     <GooglePlacesAutocomplete
@@ -21,13 +17,11 @@ export const SearchPlaces = () => {
       listViewDisplayed='auto'    // true/false/undefined
       fetchDetails={true}
       renderDescription={row => row.description} // custom description render
-      onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
-        debugger;
-        this.currentLocationSuccessAction(details);
-        console.log(data, details);
-      }}
+      onPress={(data,details = null) => {
+      props.currentLocationSuccessAction({latitude: details.geometry.location.lat ,longitude: details.geometry.location.lng})}}
       
       getDefaultValue={() => ''}
+      
       
       query={{
         // available options: https://developers.google.com/places/web-service/autocomplete

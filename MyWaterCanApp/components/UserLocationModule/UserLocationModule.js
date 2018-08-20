@@ -32,7 +32,7 @@ class UserLocation extends Component {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-      currentLocationSuccessAction: () => dispatch(currentLocationUpdate()),
+      currentLocationSuccessAction: (value) => dispatch(currentLocationUpdate(value)),
   };
 };
 function mapStateToProps(state) {
