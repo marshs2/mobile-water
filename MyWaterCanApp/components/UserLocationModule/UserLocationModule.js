@@ -9,7 +9,7 @@ import { SearchPlaces } from '../common/SearchPlaces';
 
 import {getGPSLocation} from '../../services/GPSServices';
 import MapView from '../common/MapView';
-import {currentLocationUpdate} from '../../actions/Actions'
+import {currentLocationUpdate,searchOnFocus} from '../../actions/Actions'
 
 class UserLocation extends Component {
   
@@ -24,21 +24,24 @@ class UserLocation extends Component {
   render() {
     return (
     <View style =  {styles.container}>
-    <SearchPlaces currentLocationSuccessAction={this.props.currentLocationSuccessAction}/>
-     <MapView currentUserLocation={this.props.currentUserLocation} />
+    <SearchPlaces currentLocationSuccessAction={this.props.currentLocationSuccessAction} searchOnFocus={this.props.searchOnFocus}/>
+    {!this.props.search_onFocus ? (<MapView currentUserLocation={this.props.currentUserLocation} />): (<View/>)} 
      </View>
+  
     );
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
       currentLocationSuccessAction: (value) => dispatch(currentLocationUpdate(value)),
+      searchOnFocus: () => dispatch(searchOnFocus()),
   };
 };
 function mapStateToProps(state) {
   debugger;
   return {
-    currentUserLocation : state.currentUserLocation
+    currentUserLocation : state.currentUserLocation,
+    search_onFocus: state.searchOnFocus
   };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(UserLocation);
@@ -48,8 +51,7 @@ const styles = StyleSheet.create({
     // justifyContent: 'center',
     // alignItems: 'center',
     height: '100%',
-    width: '100%',
-    backgroundColor: 'red',
+    width: '100%'
   },
   searchPlaces: {
     flex: 1,

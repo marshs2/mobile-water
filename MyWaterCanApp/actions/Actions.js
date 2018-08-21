@@ -9,13 +9,16 @@ import {
 import { connect } from 'react-redux';
 
 export function loadValue(value) {
-return { type: 'INITIAL_STATE', value }
+    return { type: 'INITIAL_STATE', value }
 }
 export function canIncrementer() {
     return { type: 'CAN_INCREMENT' }
 }
 export function canDecrementer() {
     return { type: 'CAN_DECREMENT' }
+}
+export function searchOnFocus() {
+    return { type: 'SEARCH_ONFOCUS' }
 }
 
 export function emergencyChange() {
@@ -48,8 +51,9 @@ export function currentLocationUpdate(value) {
 }
 export function initialLoad() {
     return (dispatch) => {
-        fetch("http://ec2-13-127-170-233.ap-south-1.compute.amazonaws.com/api/v1/getCan")
+        fetch("http://ec2-13-127-170-233.ap-south-1.compute.amazonaws.com/api/v1/cans")
             .then((response) => {
+               
                 console.log('response', response);
                 if (!response.ok) {
                     throw Error(response.statusText);
@@ -60,7 +64,10 @@ export function initialLoad() {
             .then((value) => {
                 return  dispatch(loadValue(value))
             })
-            .catch((error) => console.log('errorx', error));
+            .catch((error) => {
+                console.log('errorx', error);
+                 dispatch(loadValue(null));// need to be removed 
+            });
     };
 }
 

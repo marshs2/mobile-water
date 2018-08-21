@@ -12,16 +12,25 @@ export const SearchPlaces = (props) => {
     <GooglePlacesAutocomplete
       placeholder='Where to deliver Water?'
       minLength={2} // minimum length of text to search
-      autoFocus={true}
+      autoFocus={false}
       returnKeyType={'search'} // Can be left out for default return key https://facebook.github.io/react-native/docs/textinput.html#returnkeytype
       listViewDisplayed='auto'    // true/false/undefined
       fetchDetails={true}
+      inputStyles={{height: '30%'}}
       renderDescription={row => row.description} // custom description render
       onPress={(data,details = null) => {
-      props.currentLocationSuccessAction({latitude: details.geometry.location.lat ,longitude: details.geometry.location.lng})}}
+      props.currentLocationSuccessAction({latitude: details.geometry.location.lat ,longitude: details.geometry.location.lng});
+      props.searchOnFocus();
+    }
+    }
       
       getDefaultValue={() => ''}
-      
+      textInputProps={{
+        onFocus: () => {
+          props.searchOnFocus();
+          console.log('onfoucus')
+        }
+    }}
       
       query={{
         // available options: https://developers.google.com/places/web-service/autocomplete
@@ -32,7 +41,7 @@ export const SearchPlaces = (props) => {
       }}
       
       styles={{
-         height: 50, 
+         height: '10%', 
          backgroundColor: 'powderblue',
         textInputContainer: {
           width: '100%'
@@ -42,6 +51,10 @@ export const SearchPlaces = (props) => {
         },
         predefinedPlacesDescription: {
           color: '#1faadb'
+        },
+        input: {
+          height: 50,
+          width: 50,
         }
       }}
       
