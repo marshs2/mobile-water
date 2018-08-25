@@ -23,9 +23,12 @@ class UserLocation extends Component {
   render() {
     return (
     <View style =  {styles.container}>
-      <SearchPlaces currentLocationSuccessAction={this.props.currentLocationSuccessAction} searchOnFocus={this.props.searchOnFocus}/>
-    
-      {!this.props.search_onFocus ? (<UserLocationMapView currentUserLocation={this.props.currentUserLocation} />): (<View/>)} 
+      <View style={[this.props.search_onFocus ? styles.searchContainerActive : styles.searchContainerInactive]}>
+        <SearchPlaces currentLocationSuccessAction={this.props.currentLocationSuccessAction} searchOnFocus={this.props.searchOnFocus}/>
+      </View>
+      <View style={![this.props.search_onFocus ? styles.mapContainerActive : styles.mapContainerInactive]}>
+        <UserLocationMapView currentUserLocation={this.props.currentUserLocation} />
+      </View>
     </View>
   
     );
@@ -47,32 +50,22 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, mapDispatchToProps)(UserLocation);
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
+    flex: 1,
     // justifyContent: 'center',
-    // alignItems: 'center',
-    height: '80%',
+    alignItems: 'stretch',
+    height: '100%',
     width: '100%'
   },
-  searchPlaces: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-    height: 400
+  searchContainerActive: {
+    height: '100%'
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  searchContainerInactive: {
+    height: '10%'
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  mapContainerActive: {
+    height: '80%'
   },
-  container1: {
-    height: '20%',
-    width: '100%',
-    backgroundColor: '#F5FCFF'
+  mapContainerInactive: {
+    height: '0%'
   }
 });

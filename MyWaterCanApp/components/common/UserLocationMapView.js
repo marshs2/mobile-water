@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
     height: '90%',
     width: '100%',
-    backgroundColor: 'red',
   }
 });
 
