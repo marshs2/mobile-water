@@ -2,22 +2,30 @@
   export function masterReducer(state={}, action) {
     switch(action.type) {
       case 'INITIAL_STATE':
-        // return {
-        //   canQuantity: 25,
-        //   canUnit: 'Litres',
-        //   canCount: 2,
-        //   upperBound: 10,
-        //   lowerBound: 2,
-        //   emergency: true
-        // }
-        return  {
-          canQuantity: action.value.defaultCanOption.quantity,
-          canUnit: action.value.defaultCanOption.unit,
-          canCount: action.value.defaultCanOption.defaultNumber,
-          emergency: action.value.emergencyBooking,
-          upperBound: action.value.upperBound,
-          lowerBound: action.value.lowerBound
+        return {
+          canQuantity: 25,
+          canUnit: 'Litres',
+          canCount: 2,
+          upperBound: 10,
+          lowerBound: 2,
+          emergency: true,
+          searchOnFocus: false,
+        currentUserLocation: {latitude:13.0517102 ,longitude:80.1899955}
         }
+        // return  {
+        //   canQuantity: action.value.defaultCanOption.quantity,
+        //   canUnit: action.value.defaultCanOption.unit,
+        //   canCount: action.value.defaultCanOption.defaultNumber,
+        //   emergency: action.value.emergencyBooking,
+        //   upperBound: action.value.upperBound,
+        //   lowerBound: action.value.lowerBound,
+        //   currentUserLocation: {latitude:13.0517102 ,longitude:80.1899955}
+        // }
+        case 'CURRENT_LOCATION':
+        return Object.assign({}, state, {
+          currentUserLocation: {latitude: action.latitude,longitude: action.longitude}
+        })
+
       case 'CAN_INCREMENT':
         let incState = Object.assign({},state);
         if (incState.canCount < incState.upperBound) {
@@ -33,6 +41,10 @@
         case 'EMERGENCY_CHANGE':
         return Object.assign({}, state, {
           emergency: !state.emergency
+        })
+        case 'SEARCH_ONFOCUS':
+        return Object.assign({}, state, {
+          searchOnFocus: !state.searchOnFocus
         })
         case 'IS_LOADING':
         return action.isloading;
@@ -50,29 +62,6 @@
         return state;
     }
   }
-
-  // export function fetchCounter(state=false,action) {
-  //   switch(action.type) {
-  //    case 'ISLOADING':
-  //       return action.isloading;
-  //    case 'COUNTERSUCESS':
-  //       return false;
-  //     default:
-  //       return state;
-  //   }
-  // }
-
-  // export function testing(state=0, action) {
-  //   switch(action.type) {
-  //     case 'INCREMENT':
-  //      return state + 2;
-  //     case 'DECREMENT':
-  //      return state - 2;
-  //      case 'COUNTERSUCESS':
-  //      return action.value.count;
-  //     default:
-  //       return state
-  //   }
-  // }
+  
 
  

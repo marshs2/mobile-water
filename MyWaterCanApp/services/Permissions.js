@@ -1,5 +1,4 @@
 import {PermissionsAndroid} from 'react-native';
-import Geolocation from 'react-native-geolocation-service';
 
 // GPS permission
 export async function requestGPSPermission(){
