@@ -13,7 +13,6 @@ const currentLocationSuccessAction = null;
  
 
 function geo_success(data){
-    debugger;
     currentLocationSuccessAction({latitude:data.coords.latitude,longitude:data.coords.longitude})
     console.log("Got GPS data..... ",data);
 }
@@ -27,7 +26,6 @@ function GPSHandler(){
    navigator.geolocation.setRNConfiguration(config);
     // Get Current Position from GPS
     Geolocation.getCurrentPosition((data) => {
-        debugger;
         currentLocationSuccessAction({latitude:data.coords.latitude,longitude:data.coords.longitude})
         console.log("Got GPS data..... ",data);   
     }, (err) => {

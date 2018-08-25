@@ -144,6 +144,12 @@ dependencies {
     compile project(':react-native-navigation')
     compile project(':react-native-geolocation-service')
     compile 'com.google.android.gms:play-services-location:11.0.0'
+    compile(project(':react-native-maps')){
+        exclude group: 'com.google.android.gms', module: 'play-services-base'
+        exclude group: 'com.google.android.gms', module: 'play-services-maps'
+    }
+    compile 'com.google.android.gms:play-services-base:11.0.0'
+    compile 'com.google.android.gms:play-services-maps:11.0.0'
     
 }
 

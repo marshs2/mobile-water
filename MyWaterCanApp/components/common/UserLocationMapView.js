@@ -7,7 +7,7 @@ import {
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 
-class UserLocation extends Component {
+class UserLocationMapView extends Component {
 
   constructor(props){
     super(props);
@@ -48,4 +48,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default UserLocation;
+export default UserLocationMapView;

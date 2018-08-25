@@ -24,7 +24,7 @@ Navigation.startTabBasedApp({
         label: 'Book Now',
         screen: 'BookingModuleScreen',
         title: 'Book Can',
-        // icon: require('./images/water.png'),
+        icon: require('./images/water.png'),
         selectedIcon: require('./images/water.png')
       }
     ]

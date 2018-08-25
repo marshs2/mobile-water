@@ -10,7 +10,7 @@
           lowerBound: 2,
           emergency: true,
           searchOnFocus: false,
-        currentUserLocation: {latitude:13.0517102 ,longitude:80.1899955}
+          currentUserLocation: {latitude:13.0517102 ,longitude:80.1899955}
         }
         // return  {
         //   canQuantity: action.value.defaultCanOption.quantity,

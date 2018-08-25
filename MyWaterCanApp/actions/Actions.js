@@ -8,7 +8,7 @@ import {
   } from 'react-native';
 import { connect } from 'react-redux';
 
-export function loadValue(value) {
+export function initialLoad(value) {
     return { type: 'INITIAL_STATE', value }
 }
 export function canIncrementer() {
@@ -39,7 +39,7 @@ export function counterFetchingSucess(value) {
 }
 
 export function currentLocationUpdate(value) {
-    debugger;
+    // debugger;
     if (value) {
         return { type: 'CURRENT_LOCATION',
             latitude: value.latitude,
@@ -49,7 +49,7 @@ export function currentLocationUpdate(value) {
         return { type: 'NA'};
     }
 }
-export function initialLoad() {
+/* export function initialLoad() {
     return (dispatch) => {
         fetch("http://ec2-13-127-170-233.ap-south-1.compute.amazonaws.com/api/v1/cans")
             .then((response) => {
@@ -69,7 +69,7 @@ export function initialLoad() {
                  dispatch(loadValue(null));// need to be removed 
             });
     };
-}
+} */
 
 // export function bookNow() {
 //     return (dispatch) => {
