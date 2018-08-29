@@ -10,6 +10,7 @@ import { SearchPlaces } from '../common/SearchPlaces';
 import {getGPSLocation} from '../../services/GPSServices';
 import UserLocationMapView from '../common/UserLocationMapView';
 import {currentLocationUpdate,searchOnFocus} from '../../actions/Actions';
+import NavigationButton from '../common/NavigationButton';
 
 
 class UserLocation extends Component {
@@ -20,6 +21,14 @@ class UserLocation extends Component {
   componentDidMount(){
     getGPSLocation(this.props.currentLocationSuccessAction);
   }
+
+  
+  NavigationButtonHandler = () => {
+    this.props.navigator.push({
+        screen: 'UserLocationScreen',
+        title: 'User Location'
+    });
+  }
   render() {
     return (
     <View style =  {styles.container}>
@@ -28,6 +37,9 @@ class UserLocation extends Component {
       </View>
       <View style={[!this.props.search_onFocus ? styles.mapContainerActive : styles.mapContainerInactive]}>
         <UserLocationMapView currentUserLocation={this.props.currentUserLocation} />
+      </View>
+      <View style = {styles.NavigationButtonContainer}>
+        <NavigationButton next={this.NavigationButtonHandler} />
       </View>
     </View>
   
@@ -68,5 +80,13 @@ const styles = StyleSheet.create({
   mapContainerInactive: {
     height: '0%',
     marginTop: 50
+  },
+  NavigationButtonContainer:{
+    position: 'absolute',
+    bottom: '2%',
+    right: '5%',
+    borderRadius: 25,
+    height: 50,
+    width: 50
   }
 });
