@@ -14,7 +14,6 @@ export default class NavigationButton extends React.Component {
             <View style = {styles.buttonStyle}>
                 <Button title = '>' onPress = {this.props.next}>
                 </Button>
-                <Text>Hiiiiii</Text>
             </View>
         )
     }
