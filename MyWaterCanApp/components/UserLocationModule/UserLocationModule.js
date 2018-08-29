@@ -11,6 +11,7 @@ import {getGPSLocation} from '../../services/GPSServices';
 import UserLocationMapView from '../common/UserLocationMapView';
 import {currentLocationUpdate,searchOnFocus} from '../../actions/Actions';
 import NavigationButton from '../common/NavigationButton';
+import GPSButton from '../common/GPSButton';
 
 
 class UserLocation extends Component {
@@ -34,6 +35,7 @@ class UserLocation extends Component {
     <View style =  {styles.container}>
       <View style={[this.props.search_onFocus ? styles.searchContainerActive : styles.searchContainerInactive]}>
         <SearchPlaces currentLocationSuccessAction={this.props.currentLocationSuccessAction} searchOnFocus={this.props.searchOnFocus}/>
+        <GPSButton currentLocationSuccessAction={this.props.currentLocationSuccessAction} />
       </View>
       <View style={[!this.props.search_onFocus ? styles.mapContainerActive : styles.mapContainerInactive]}>
         <UserLocationMapView currentUserLocation={this.props.currentUserLocation} />
