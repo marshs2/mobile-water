@@ -11,7 +11,7 @@ const geo_options = {
 
 const currentLocationSuccessAction = null;
  
-
+// ON call of the geolocation success
 function geo_success(data){
     currentLocationSuccessAction({latitude:data.coords.latitude,longitude:data.coords.longitude})
     console.log("Got GPS data..... ",data);
