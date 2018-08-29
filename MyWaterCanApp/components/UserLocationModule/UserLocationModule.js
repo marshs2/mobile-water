@@ -26,7 +26,7 @@ class UserLocation extends Component {
       <View style={[this.props.search_onFocus ? styles.searchContainerActive : styles.searchContainerInactive]}>
         <SearchPlaces currentLocationSuccessAction={this.props.currentLocationSuccessAction} searchOnFocus={this.props.searchOnFocus}/>
       </View>
-      <View style={![this.props.search_onFocus ? styles.mapContainerActive : styles.mapContainerInactive]}>
+      <View style={[!this.props.search_onFocus ? styles.mapContainerActive : styles.mapContainerInactive]}>
         <UserLocationMapView currentUserLocation={this.props.currentUserLocation} />
       </View>
     </View>
@@ -60,12 +60,13 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   searchContainerInactive: {
-    height: '10%'
+    height: 40
   },
   mapContainerActive: {
-    height: '80%'
+    height: '95%'
   },
   mapContainerInactive: {
-    height: '0%'
+    height: '0%',
+    marginTop: 50
   }
 });
