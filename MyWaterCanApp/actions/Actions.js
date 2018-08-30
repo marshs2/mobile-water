@@ -1,12 +1,5 @@
-import React from 'react';
-import {
-    Platform,
-    StyleSheet,
-    Text,
-    View,
-    Button
-  } from 'react-native';
-import { connect } from 'react-redux';
+
+
 
 export function initialLoad(value) {
     return { type: 'INITIAL_STATE', value }
