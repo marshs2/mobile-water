@@ -27,5 +27,11 @@ Navigation.startTabBasedApp({
         icon: require('./images/water.png'),
         selectedIcon: require('./images/water.png')
       }
-    ]
+    ],
+    tabsStyle: {
+    },
+    appStyle: {
+      orientation: 'portrait',
+      tabBarHidden: true
+    }
 });
