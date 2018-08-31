@@ -10,6 +10,7 @@ import {
   } from 'react-native';
 
   import {getGPSLocation} from '../../services/GPSServices';
+  import crosswire from "../../images/GPS.png";
 
 export default class GPSButton extends React.Component {
 
@@ -28,7 +29,7 @@ export default class GPSButton extends React.Component {
                     {/* <Button title = '#' onPress = {this.getGPS}>
                     </Button> */}
                     <TouchableOpacity style = {styles.button} onPress = {this.getGPS}>
-                        <Image style={styles.imageStyle} source={require("../../images/GPS.png")}/>
+                        <Image style={styles.imageStyle} source={crosswire}/>
                     </TouchableOpacity>
                 </View>
             </View>

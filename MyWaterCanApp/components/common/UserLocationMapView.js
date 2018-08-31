@@ -7,7 +7,7 @@ import {
 Image } from 'react-native';
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
-import marker from '../../images/pin.png'
+import marker from '../../images/MapMarker.png'
 
 class UserLocationMapView extends Component {
 
@@ -54,10 +54,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
-    height:  50,
-    width: 50,
+    height:  40,
+    width: 40,
 
-    backgroundColor: 'rgba(0, 0, 0, 0.15)'
+    // backgroundColor: 'rgba(0, 0, 0, 0.15)',
+    resizeMode: 'contain'
 },
   map: {
     flex: 1,
