@@ -4,7 +4,8 @@ import {
   StyleSheet,
   Text,
   Image,
-  View } from 'react-native';
+  View 
+  } from 'react-native';
   import { connect } from 'react-redux';
 import { SearchPlaces } from '../common/SearchPlaces';
 
@@ -12,7 +13,7 @@ import {getGPSLocation} from '../../services/GPSServices';
 import UserLocationMapView from '../common/UserLocationMapView';
 import {currentLocationUpdate,searchOnFocus} from '../../actions/Actions';
 import NavigationButton from '../common/NavigationButton';
-import GPSButton from '../common/GPSButton';
+import GPSButton from '../common/GPSButton'
 
 
 class UserLocation extends Component {
@@ -39,7 +40,7 @@ class UserLocation extends Component {
         <GPSButton currentLocationSuccessAction={this.props.currentLocationSuccessAction} />
       </View>
       <View style={[!this.props.search_onFocus ? styles.mapContainerActive : styles.mapContainerInactive]}>
-        <UserLocationMapView currentUserLocation={this.props.currentUserLocation} />
+        <UserLocationMapView currentUserLocation={this.props.currentUserLocation} currentLocationSuccessAction={this.props.currentLocationSuccessAction}/>
       </View>
       <View style = {styles.NavigationButtonContainer}>
         <NavigationButton next={this.NavigationButtonHandler} />
