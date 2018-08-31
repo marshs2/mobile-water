@@ -3,6 +3,7 @@ import {
   Platform,
   StyleSheet,
   Text,
+  Image,
   View } from 'react-native';
   import { connect } from 'react-redux';
 import { SearchPlaces } from '../common/SearchPlaces';
@@ -43,6 +44,21 @@ class UserLocation extends Component {
       <View style = {styles.NavigationButtonContainer}>
         <NavigationButton next={this.NavigationButtonHandler} />
       </View>
+      {/* Test view for image */}
+     {/*  <View style = {{
+        height: 20,
+        width: 20,
+        
+
+      }}>
+        <Text>hiiii</Text>
+        <Image style={{
+            height: '100%',
+            width: '100%',
+            resizeMode: "contain"
+             }} 
+          source={require("../../images/GPS.png")}/>
+      </View> */}
     </View>
   
     );
@@ -77,7 +93,7 @@ const styles = StyleSheet.create({
     height: 40
   },
   mapContainerActive: {
-    height: '95%'
+    height: '75%'
   },
   mapContainerInactive: {
     height: '0%',
