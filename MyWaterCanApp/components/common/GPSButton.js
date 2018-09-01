@@ -40,8 +40,14 @@ export default class GPSButton extends React.Component {
 }
 const styles = StyleSheet.create({
     container:{
-        height: "100%",
-        width: "100%"
+        position: 'absolute',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end',
+        height:  40,
+        width: 40,
+        right: 5,
+        top: 12
     },
     buttonStyle: {
         alignItems: 'flex-end'

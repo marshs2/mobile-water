@@ -37,7 +37,14 @@ class UserLocation extends Component {
     <View style =  {styles.container}>
       <View style={[this.props.search_onFocus ? styles.searchContainerActive : styles.searchContainerInactive]}>
         <SearchPlaces currentLocationSuccessAction={this.props.currentLocationSuccessAction} searchOnFocus={this.props.searchOnFocus}/>
-        <GPSButton currentLocationSuccessAction={this.props.currentLocationSuccessAction} />
+        <GPSButton style={{
+          position: 'absolute',
+          flexDirection: 'row',
+          justifyContent: 'flex-end',
+          alignItems: 'flex-end',
+          height:  40,
+          width: 40
+        }} currentLocationSuccessAction={this.props.currentLocationSuccessAction} />
       </View>
       <View style={[!this.props.search_onFocus ? styles.mapContainerActive : styles.mapContainerInactive]}>
         <UserLocationMapView currentUserLocation={this.props.currentUserLocation} currentLocationSuccessAction={this.props.currentLocationSuccessAction}/>
