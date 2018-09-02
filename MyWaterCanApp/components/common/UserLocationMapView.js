@@ -15,7 +15,7 @@ class UserLocationMapView extends Component {
     super(props);
   }
 
-  onRegionChange = (region) =>{
+  onRegionChangeComplete = (region) =>{
     console.log(region) 
     this.props.currentLocationSuccessAction({latitude: region.latitude ,longitude: region.longitude});
   }
@@ -24,7 +24,10 @@ class UserLocationMapView extends Component {
     return (
       <View  style = {styles.container}>
      <MapView style = {styles.map}
-     onRegionChangeComplete={this.onRegionChange}
+     onRegionChangeComplete={this.onRegionChangecomplete}
+     onPress = {
+       console.log('mapview on press')
+     }
      region = {{
       latitude: this.props.currentUserLocation.latitude,
       longitude: this.props.currentUserLocation.longitude,
@@ -35,7 +38,7 @@ class UserLocationMapView extends Component {
       latitude: 13.0517102,
       longitude: 80.1899955,
       latitudeDelta: 0.00122,
-      longitudeDelta: 0.00121,
+      longitudeDelta: 0.00122,
     }}>
     
     {/* <Marker

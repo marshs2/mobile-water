@@ -26,8 +26,6 @@ export default class GPSButton extends React.Component {
         return (
             <View style={styles.container}>
                 <View style = {styles.buttonStyle}>
-                    {/* <Button title = '#' onPress = {this.getGPS}>
-                    </Button> */}
                     <TouchableOpacity style = {styles.button} onPress = {this.getGPS}>
                         <Image style={styles.imageStyle} source={crosswire}/>
                     </TouchableOpacity>

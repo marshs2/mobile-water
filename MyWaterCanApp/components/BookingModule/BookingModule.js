@@ -18,9 +18,13 @@ import {
     }
 
     bookNowHandler = () => {
+        
       this.props.navigator.push({
-          screen: 'UserLocationScreen',
-          title: 'User Location'
+          screen: 'AddressRefinement',
+          title: 'Address Selection',
+          navigatorStyle: {
+            tabBarHidden: true
+          }
       });
     }
 
