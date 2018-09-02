@@ -24,8 +24,8 @@ Navigation.startTabBasedApp({
         label: 'Book Now',
         screen: 'BookingModuleScreen',
         title: 'Book Can',
-        icon: require('./images/bookingTabbarIcon/india.png'),
-        selectedIcon: require('./images/bookingTabbarIcon/india.png')
+        icon: require('./images/bookingTabbarIcon/icon.png'),
+        selectedIcon: require('./images/bookingTabbarIcon/icon.png')
       }
     ],
     tabsStyle: {
