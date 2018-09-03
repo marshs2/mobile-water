@@ -44,10 +44,15 @@
         })
         case 'SEARCH_ONFOCUS':
         return Object.assign({}, state, {
-          searchOnFocus: !state.searchOnFocus
+          searchOnFocus: true
         })
         case 'IS_LOADING':
         return action.isloading;
+        case 'CLEAR_SEARCH':
+        return Object.assign({}, state, {
+          searchOnFocus: false
+        })
+
       default:
         return state;
     }

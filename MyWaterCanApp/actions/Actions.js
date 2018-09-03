@@ -13,7 +13,9 @@ export function canDecrementer() {
 export function searchOnFocus() {
     return { type: 'SEARCH_ONFOCUS' }
 }
-
+export function clearSearch() {
+    return { type: 'CLEAR_SEARCH' }
+}
 export function emergencyChange() {
     return { type: 'EMERGENCY_CHANGE' }
 }

@@ -11,7 +11,7 @@ import { SearchPlaces } from '../common/SearchPlaces';
 
 import {getGPSLocation} from '../../services/GPSServices';
 import UserLocationMapView from '../common/UserLocationMapView';
-import {currentLocationUpdate,searchOnFocus} from '../../actions/Actions';
+import {currentLocationUpdate,searchOnFocus, clearSearch} from '../../actions/Actions';
 import NavigationButton from '../common/NavigationButton';
 import GPSButton from '../common/GPSButton'
 
@@ -32,19 +32,21 @@ class UserLocation extends Component {
         title: 'User Location'
     });
   }
+
+
   render() {
     return (
     <View style =  {styles.container}>
       <View style={[this.props.search_onFocus ? styles.searchContainerActive : styles.searchContainerInactive]}>
         <SearchPlaces currentLocationSuccessAction={this.props.currentLocationSuccessAction} searchOnFocus={this.props.searchOnFocus}/>
-        <GPSButton style={{
+        <Text style = {{
           position: 'absolute',
-          flexDirection: 'row',
-          justifyContent: 'flex-end',
-          alignItems: 'flex-end',
           height:  40,
-          width: 40
-        }} currentLocationSuccessAction={this.props.currentLocationSuccessAction} />
+          width: 40,
+          right: 20,
+          top: 10
+        }} onPress={this.props.clearSearch}>X</Text>
+        <GPSButton  currentLocationSuccessAction={this.props.currentLocationSuccessAction} />
       </View>
       <View style={[!this.props.search_onFocus ? styles.mapContainerActive : styles.mapContainerInactive]}>
         <UserLocationMapView currentUserLocation={this.props.currentUserLocation} currentLocationSuccessAction={this.props.currentLocationSuccessAction}/>
@@ -52,21 +54,6 @@ class UserLocation extends Component {
       <View style = {styles.NavigationButtonContainer}>
         <NavigationButton next={this.NavigationButtonHandler} />
       </View>
-      {/* Test view for image */}
-     {/*  <View style = {{
-        height: 20,
-        width: 20,
-        
-
-      }}>
-        <Text>hiiii</Text>
-        <Image style={{
-            height: '100%',
-            width: '100%',
-            resizeMode: "contain"
-             }} 
-          source={require("../../images/GPS.png")}/>
-      </View> */}
     </View>
   
     );
@@ -76,6 +63,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
       currentLocationSuccessAction: (value) => dispatch(currentLocationUpdate(value)),
       searchOnFocus: () => dispatch(searchOnFocus()),
+      clearSearch: () => dispatch(clearSearch())
   };
 };
 function mapStateToProps(state) {
@@ -101,7 +89,8 @@ const styles = StyleSheet.create({
     height: 40
   },
   mapContainerActive: {
-    height: '75%'
+    height: '75%',
+    marginTop: 0
   },
   mapContainerInactive: {
     height: '0%',
