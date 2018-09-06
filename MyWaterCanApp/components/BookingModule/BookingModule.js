@@ -18,7 +18,6 @@ import {
     }
 
     bookNowHandler = () => {
-        
       this.props.navigator.push({
           screen: 'AddressRefinement',
           title: 'Address Selection',

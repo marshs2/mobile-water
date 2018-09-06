@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import {
   Platform,
   StyleSheet,
-  Text,
-  Image,
+ TouchableOpacity,
   View 
   } from 'react-native';
   import { connect } from 'react-redux';
@@ -27,25 +26,34 @@ class AddressRefinement extends Component {
 
   
   NavigationButtonHandler = () => {
-    this.props.navigator.push({
-        screen: 'UserLocationScreen',
-        title: 'User Location'
-    });
+
+    this.props.navigator.showModal({
+      screen: 'UserLocationScreen', // unique ID registered with Navigation.registerScreen
+      title: 'User Location', // title of the screen as appears in the nav bar (optional)
+      animationType: 'slide-up' // 'none' / 'slide-up' , appear animation for the modal (optional, default 'slide-up')
+    }); 
   }
   render() {
     return (
     <View style =  {styles.container}>
       <View style= {styles.mapContainer}>
-        <UserLocationMapView currentUserLocation={this.props.currentUserLocation} currentLocationSuccessAction={this.props.currentLocationSuccessAction}/>
+        <TouchableOpacity style = {styles.container} onPress = {this.NavigationButtonHandler}>
+          <UserLocationMapView currentUserLocation={this.props.currentUserLocation} currentLocationSuccessAction={this.props.currentLocationSuccessAction}/>
+         </TouchableOpacity>
       </View>
-      <View style = {styles.NavigationButtonContainer}>
+      
+      {/* <View style = {styles.NavigationButtonContainer}>
         <NavigationButton next={this.NavigationButtonHandler} />
-      </View>
+      </View> */}
     </View>
   
     );
   }
+  showULM() {
+    console.log('india show ulm')
+  }
 }
+
 const mapDispatchToProps = (dispatch) => {
   return {
       currentLocationSuccessAction: (value) => dispatch(currentLocationUpdate(value)),
@@ -62,7 +70,7 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, mapDispatchToProps)(AddressRefinement);
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    position: 'absolute',
     // justifyContent: 'center',
     alignItems: 'stretch',
     height: '100%',
