@@ -57,20 +57,7 @@ class AddressRefinement extends Component {
       screen: 'UserLocationScreen', // unique ID registered with Navigation.registerScreen
       title: 'User Location', // title of the screen as appears in the nav bar (optional)
       animationType: 'slide-up', // 'none' / 'slide-up' , appear animation for the modal (optional, default 'slide-up')
-      rightButtons: [{ // buttons for the right side of the nav bar (optional)
-        title: 'Edit', // if you want a textual button
-          // icon: require('../../img/navicon_edit.png'), // if you want an image button
-        component: 'example.CustomButton', // if you want a custom button
-        passProps: {}, // Object that will be passed as props to custom components (optional)
-        id: 'compose', // id of the button which will pass to your press event handler. See the section bellow for Android specific button ids
-        testID: 'e2e_is_awesome', // if you have e2e tests, use this to find your button
-        disabled: true, // optional, used to disable the button (appears faded and doesn't interact)
-        disableIconTint: true, // optional, by default the image colors are overridden and tinted to navBarButtonColor, set to true to keep the original image colors
-        buttonColor: 'blue', // Set color for the button (can also be used in setButtons function to set different button style programatically)
-        buttonFontSize: 14, // Set font size for the button (can also be used in setButtons function to set different button style programatically)
-        buttonFontWeight: '600', // Set font weight for the button (can also be used in setButtons function to set different button style programatically)
-        systemItem: 'compose', // Optional, iOS only. Set a system bar button item as the icon. Matches UIBarButtonSystemItem naming.
-      }]
+      
     }); 
   }
   render() {
