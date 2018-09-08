@@ -11,7 +11,7 @@ import { SearchPlaces } from '../common/SearchPlaces';
 
 import {getGPSLocation} from '../../services/GPSServices';
 import UserLocationMapView from '../common/UserLocationMapView';
-import {currentLocationUpdate,searchOnFocus, clearSearch} from '../../actions/Actions';
+import {currentLocationUpdate,searchOnFocus, clearSearch, reverseGeoCode} from '../../actions/Actions';
 import NavigationButton from '../common/NavigationButton';
 import GPSButton from '../common/GPSButton'
 
@@ -49,7 +49,7 @@ class UserLocation extends Component {
         <GPSButton  currentLocationSuccessAction={this.props.currentLocationSuccessAction} />
       </View>
       <View style={[!this.props.search_onFocus ? styles.mapContainerActive : styles.mapContainerInactive]}>
-        <UserLocationMapView currentUserLocation={this.props.currentUserLocation} currentLocationSuccessAction={this.props.currentLocationSuccessAction}/>
+        <UserLocationMapView currentUserLocation={this.props.currentUserLocation} reverseGeoCode={this.props.reverseGeoCode} currentLocationSuccessAction={this.props.currentLocationSuccessAction}/>
       </View>
       <View style = {styles.NavigationButtonContainer}>
         <NavigationButton next={this.NavigationButtonHandler} />
@@ -63,7 +63,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
       currentLocationSuccessAction: (value) => dispatch(currentLocationUpdate(value)),
       searchOnFocus: () => dispatch(searchOnFocus()),
-      clearSearch: () => dispatch(clearSearch())
+      clearSearch: () => dispatch(clearSearch()),
+      reverseGeoCode: (lat, lng) => dispatch(reverseGeoCode(lat, lng))
   };
 };
 function mapStateToProps(state) {

@@ -16,7 +16,8 @@ class UserLocationMapView extends Component {
   }
 
   onRegionChangeComplete = (region) =>{
-    console.log(region) 
+    console.log(region);
+    this.props.reverseGeoCode(region.latitude, region.longitude);
     this.props.currentLocationSuccessAction({latitude: region.latitude ,longitude: region.longitude});
   }
 
@@ -24,7 +25,7 @@ class UserLocationMapView extends Component {
     return (
       <View  style = {styles.container}>
      <MapView style = {styles.map}
-     onRegionChangeComplete={this.onRegionChangecomplete}
+     onRegionChangeComplete={this.onRegionChangeComplete}
      onPress = {
        console.log('mapview on press')
      }

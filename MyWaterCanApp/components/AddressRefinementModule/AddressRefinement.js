@@ -9,7 +9,7 @@ import {
 
 import {getGPSLocation} from '../../services/GPSServices';
 import UserLocationMapView from '../common/UserLocationMapView';
-import {currentLocationUpdate,searchOnFocus} from '../../actions/Actions';
+import {currentLocationUpdate,searchOnFocus,reverseGeoCode} from '../../actions/Actions';
 import NavigationButton from '../common/NavigationButton';
 import GPSButton from '../common/GPSButton'
 
@@ -38,7 +38,7 @@ class AddressRefinement extends Component {
     <View style =  {styles.container}>
       <View style= {styles.mapContainer}>
         <TouchableOpacity style = {styles.container} onPress = {this.NavigationButtonHandler}>
-          <UserLocationMapView currentUserLocation={this.props.currentUserLocation} currentLocationSuccessAction={this.props.currentLocationSuccessAction}/>
+          <UserLocationMapView reverseGeoCode={this.props.reverseGeoCode} currentUserLocation={this.props.currentUserLocation} currentLocationSuccessAction={this.props.currentLocationSuccessAction}/>
          </TouchableOpacity>
       </View>
       
@@ -58,6 +58,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
       currentLocationSuccessAction: (value) => dispatch(currentLocationUpdate(value)),
       searchOnFocus: () => dispatch(searchOnFocus()),
+      reverseGeoCode: (lat, lng) => dispatch(reverseGeoCode(lat, lng))
   };
 };
 function mapStateToProps(state) {
