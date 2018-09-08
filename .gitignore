@@ -4,3 +4,4 @@ MyWaterCanApp/android/build.gradle
 MyWaterCanApp/android/gradle/wrapper/gradle-wrapper.properties
 MyWaterCanApp/package-lock.json
 MyWaterCanApp/package.json
+MyWaterCanApp/constants/constants.js

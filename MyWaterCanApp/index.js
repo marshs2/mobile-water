@@ -24,8 +24,17 @@ Navigation.startTabBasedApp({
         label: 'Book Now',
         screen: 'BookingModuleScreen',
         title: 'Book Can',
-        // icon: require('./images/water.png'),
-        selectedIcon: require('./images/water.png')
+        icon: require('./images/bookingTabbarIcon/icon.png'),
+        // selectedIcon: require('./images/water.png')
       }
-    ]
+    ],
+    tabsStyle: {
+      tabBarButtonColor: '#929292', // optional, change the color of the tab icons and text (also unselected). On Android, add this to appStyle
+      tabBarSelectedButtonColor: '#fd8042', // optional, change the color of the selected tab icon and text (only selected). On Android, add this to appStyle
+      tabBarBackgroundColor: '#FFFFFF', // optional, change the background color of the tab bar,
+    },
+    appStyle: {
+      orientation: 'portrait',
+      // tabBarHidden: true
+    }
 });

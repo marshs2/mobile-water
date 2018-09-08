@@ -1,15 +1,8 @@
-import React from 'react';
-import {
-    Platform,
-    StyleSheet,
-    Text,
-    View,
-    Button
-  } from 'react-native';
-import { connect } from 'react-redux';
 
-export function loadValue(value) {
-return { type: 'INITIAL_STATE', value }
+
+
+export function initialLoad(value) {
+    return { type: 'INITIAL_STATE', value }
 }
 export function canIncrementer() {
     return { type: 'CAN_INCREMENT' }
@@ -17,16 +10,15 @@ export function canIncrementer() {
 export function canDecrementer() {
     return { type: 'CAN_DECREMENT' }
 }
-
+export function searchOnFocus() {
+    return { type: 'SEARCH_ONFOCUS' }
+}
+export function clearSearch() {
+    return { type: 'CLEAR_SEARCH' }
+}
 export function emergencyChange() {
     return { type: 'EMERGENCY_CHANGE' }
 }
-// export function counterIncrementer() {
-//   return { type: 'INCREMENT' }
-// }
-// export function counterDecrementer() {
-//     return { type: 'DECREMENT' }
-// }
 
 export function isLoading(mIsLoading) {
     return { type: 'ISLOADING',
@@ -40,10 +32,23 @@ export function counterFetchingSucess(value) {
             value: value
     }
 }
-export function initialLoad() {
+
+export function currentLocationUpdate(value) {
+    // debugger;
+    if (value) {
+        return { type: 'CURRENT_LOCATION',
+            latitude: value.latitude,
+            longitude: value.longitude
+        }
+    } else {
+        return { type: 'NA'};
+    }
+}
+/* export function initialLoad() {
     return (dispatch) => {
-        fetch("http://ec2-13-127-170-233.ap-south-1.compute.amazonaws.com/api/v1/getCan")
+        fetch("http://ec2-13-127-170-233.ap-south-1.compute.amazonaws.com/api/v1/cans")
             .then((response) => {
+               
                 console.log('response', response);
                 if (!response.ok) {
                     throw Error(response.statusText);
@@ -54,9 +59,12 @@ export function initialLoad() {
             .then((value) => {
                 return  dispatch(loadValue(value))
             })
-            .catch((error) => console.log('errorx', error));
+            .catch((error) => {
+                console.log('errorx', error);
+                 dispatch(loadValue(null));// need to be removed 
+            });
     };
-}
+} */
 
 // export function bookNow() {
 //     return (dispatch) => {

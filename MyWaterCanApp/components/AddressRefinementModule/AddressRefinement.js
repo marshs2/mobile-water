@@ -2,68 +2,62 @@ import React, { Component } from 'react';
 import {
   Platform,
   StyleSheet,
-  Text,
-  Image,
+ TouchableOpacity,
   View 
   } from 'react-native';
   import { connect } from 'react-redux';
-import { SearchPlaces } from '../common/SearchPlaces';
 
 import {getGPSLocation} from '../../services/GPSServices';
 import UserLocationMapView from '../common/UserLocationMapView';
-import {currentLocationUpdate,searchOnFocus, clearSearch} from '../../actions/Actions';
+import {currentLocationUpdate,searchOnFocus} from '../../actions/Actions';
 import NavigationButton from '../common/NavigationButton';
 import GPSButton from '../common/GPSButton'
 
 
-class UserLocation extends Component {
+class AddressRefinement extends Component {
   
   constructor(props){
     super(props);
   }
   componentDidMount(){
+   
     getGPSLocation(this.props.currentLocationSuccessAction);
   }
 
   
   NavigationButtonHandler = () => {
-    this.props.navigator.push({
-        screen: 'UserLocationScreen',
-        title: 'User Location'
-    });
+
+    this.props.navigator.showModal({
+      screen: 'UserLocationScreen', // unique ID registered with Navigation.registerScreen
+      title: 'User Location', // title of the screen as appears in the nav bar (optional)
+      animationType: 'slide-up' // 'none' / 'slide-up' , appear animation for the modal (optional, default 'slide-up')
+    }); 
   }
-
-
   render() {
     return (
     <View style =  {styles.container}>
-      <View style={[this.props.search_onFocus ? styles.searchContainerActive : styles.searchContainerInactive]}>
-        <SearchPlaces currentLocationSuccessAction={this.props.currentLocationSuccessAction} searchOnFocus={this.props.searchOnFocus}/>
-        <Text style = {{
-          position: 'absolute',
-          height:  40,
-          width: 40,
-          right: 20,
-          top: 10
-        }} onPress={this.props.clearSearch}>X</Text>
-        <GPSButton  currentLocationSuccessAction={this.props.currentLocationSuccessAction} />
+      <View style= {styles.mapContainer}>
+        <TouchableOpacity style = {styles.container} onPress = {this.NavigationButtonHandler}>
+          <UserLocationMapView currentUserLocation={this.props.currentUserLocation} currentLocationSuccessAction={this.props.currentLocationSuccessAction}/>
+         </TouchableOpacity>
       </View>
-      <View style={[!this.props.search_onFocus ? styles.mapContainerActive : styles.mapContainerInactive]}>
-        <UserLocationMapView currentUserLocation={this.props.currentUserLocation} currentLocationSuccessAction={this.props.currentLocationSuccessAction}/>
-      </View>
-      <View style = {styles.NavigationButtonContainer}>
+      
+      {/* <View style = {styles.NavigationButtonContainer}>
         <NavigationButton next={this.NavigationButtonHandler} />
-      </View>
+      </View> */}
     </View>
   
     );
   }
+  showULM() {
+    console.log('india show ulm')
+  }
 }
+
 const mapDispatchToProps = (dispatch) => {
   return {
       currentLocationSuccessAction: (value) => dispatch(currentLocationUpdate(value)),
       searchOnFocus: () => dispatch(searchOnFocus()),
-      clearSearch: () => dispatch(clearSearch())
   };
 };
 function mapStateToProps(state) {
@@ -73,10 +67,10 @@ function mapStateToProps(state) {
     search_onFocus: state.searchOnFocus
   };
 }
-export default connect(mapStateToProps, mapDispatchToProps)(UserLocation);
+export default connect(mapStateToProps, mapDispatchToProps)(AddressRefinement);
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    position: 'absolute',
     // justifyContent: 'center',
     alignItems: 'stretch',
     height: '100%',
@@ -85,12 +79,8 @@ const styles = StyleSheet.create({
   searchContainerActive: {
     height: '100%'
   },
-  searchContainerInactive: {
-    height: 40
-  },
-  mapContainerActive: {
-    height: '75%',
-    marginTop: 0
+  mapContainer: {
+    height: '30%'
   },
   mapContainerInactive: {
     height: '0%',
