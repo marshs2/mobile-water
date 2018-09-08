@@ -57,7 +57,6 @@ class AddressRefinement extends Component {
       screen: 'UserLocationScreen', // unique ID registered with Navigation.registerScreen
       title: 'User Location', // title of the screen as appears in the nav bar (optional)
       animationType: 'slide-up', // 'none' / 'slide-up' , appear animation for the modal (optional, default 'slide-up')
-      
     }); 
   }
   render() {
@@ -94,14 +93,21 @@ class AddressRefinement extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
       currentLocationSuccessAction: (value) => dispatch(currentLocationUpdate(value)),
+      setFloor: (value) => dispatch(setFloor(value)),
+      setDoorNo: (value) => dispatch(setDoorNo(value)),
+      setLandmark : (value) => dispatch(setLandmark(value)),
+      setLiftAvailability: (value) => dispatch(setLiftAvailability(value)),
       searchOnFocus: () => dispatch(searchOnFocus()),
   };
 };
 function mapStateToProps(state) {
-  // debugger;
   return {
     currentUserLocation : state.currentUserLocation,
-    search_onFocus: state.searchOnFocus
+    search_onFocus: state.searchOnFocus,
+    doorNo: state.doorNo,
+    landmark: state.landmark,
+    floor: state.floor,
+    liftAvailability: state.liftAvailability,
   };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AddressRefinement);

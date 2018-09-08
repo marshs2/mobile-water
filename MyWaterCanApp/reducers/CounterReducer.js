@@ -6,7 +6,12 @@
     lowerBound: 2,
     emergency: true,
     searchOnFocus: false,
-    currentUserLocation: {latitude:13.0517102 ,longitude:80.1899955}}
+    currentUserLocation: {latitude:13.0517102 ,longitude:80.1899955,
+    doorNo: '',
+    landmark: '',
+    floorNo: '',
+    liftAvailability:false,
+    }}
 
   export function masterReducer(state=initialState, action) {
     switch(action.type) {
@@ -19,11 +24,31 @@
           upperBound: action.value.upperBound,
           lowerBound: action.value.lowerBound,
           searchOnFocus: false,
-          currentUserLocation: {latitude:13.0517102 ,longitude:80.1899955}
-        }
-        case 'CURRENT_LOCATION':
+          currentUserLocation: {latitude:13.0517102 ,longitude:80.1899955,
+          doorNo: '',
+          landmark: '',
+          floorNo: '',
+          liftAvailability:false
+        }}
+      case 'CURRENT_LOCATION':
         return Object.assign({}, state, {
           currentUserLocation: {latitude: action.latitude,longitude: action.longitude}
+        })
+      case 'SET_DOOR_NO':
+        return Object.assign({}, state, {
+          doorNo: action.value
+        })
+      case 'SET_FLOOR':
+        return Object.assign({}, state, {
+          floorNo: action.value
+        })
+      case 'SET_LIFT_AVAILABILITY':
+        return Object.assign({}, state, {
+          liftAvailability: action.value
+        })
+      case 'SET_LANDMARK':
+        return Object.assign({}, state, {
+          landmark: action.value
         })
 
       case 'CAN_INCREMENT':
