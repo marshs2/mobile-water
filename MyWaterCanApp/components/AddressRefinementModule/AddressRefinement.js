@@ -13,6 +13,10 @@ import {currentLocationUpdate,searchOnFocus} from '../../actions/Actions';
 import NavigationButton from '../common/NavigationButton';
 import GPSButton from '../common/GPSButton'
 
+// Questions
+import Questions from './Questions';
+import AddressAdditionalDetail from './AddressAdditionalDetail';
+
 
 class AddressRefinement extends Component {
   
@@ -36,12 +40,22 @@ class AddressRefinement extends Component {
   render() {
     return (
     <View style =  {styles.container}>
-      <View style= {styles.mapContainer}>
+      {/*Mini Map */}
+      <View style= {styles.MiniMapContainer}>
         <TouchableOpacity style = {styles.container} onPress = {this.NavigationButtonHandler}>
           <UserLocationMapView currentUserLocation={this.props.currentUserLocation} currentLocationSuccessAction={this.props.currentLocationSuccessAction}/>
          </TouchableOpacity>
       </View>
       
+      {/* Questions */}
+      <View style={styles.questionsContainer}>
+        <Questions></Questions>
+      </View>  
+
+      {/* Address Additonal Details */}
+      <View style={styles.addressAdditionalContainer}>
+        <AddressAdditionalDetail></AddressAdditionalDetail>
+      </View>
       {/* <View style = {styles.NavigationButtonContainer}>
         <NavigationButton next={this.NavigationButtonHandler} />
       </View> */}
@@ -70,21 +84,16 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, mapDispatchToProps)(AddressRefinement);
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
+    flex: 1,
     // justifyContent: 'center',
     alignItems: 'stretch',
     height: '100%',
     width: '100%'
   },
-  searchContainerActive: {
-    height: '100%'
-  },
-  mapContainer: {
-    height: '30%'
-  },
-  mapContainerInactive: {
-    height: '0%',
-    marginTop: 50
+  MiniMapContainer: {
+    height: '30%',
+    width: '100%',
+    backgroundColor: 'red'
   },
   NavigationButtonContainer:{
     position: 'absolute',
@@ -93,5 +102,15 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     height: 50,
     width: 50
+  },
+  questionsContainer:{
+    height: '40%',
+    width: '100%',
+    backgroundColor: 'orange'
+  },
+  addressAdditionalContainer: {
+    height: '30%',
+    width: '100%',
+    backgroundColor: 'blue'
   }
 });
