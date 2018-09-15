@@ -22,8 +22,8 @@ class AddressRefinement extends Component {
   static navigatorButtons = {
     rightButtons: [
       {
-        title: 'Edit', // for a textual button, provide the button title (label)
-        id: 'edit', // id for this button, given in onNavigatorEvent(event) to help understand which button was clicked
+        title: 'NEXT', // for a textual button, provide the button title (label)
+        id: 'next', // id for this button, given in onNavigatorEvent(event) to help understand which button was clicked
         testID: 'e2e_rules', // optional, used to locate this view in end-to-end tests
         // disabled: true, // optional, used to disable the button (appears faded and doesn't interact)
         disableIconTint: true, // optional, by default the image colors are overridden and tinted to navBarButtonColor, set to true to keep the original image colors
@@ -84,9 +84,6 @@ class AddressRefinement extends Component {
     </View>
   
     );
-  }
-  showULM() {
-    console.log('india show ulm')
   }
 }
 

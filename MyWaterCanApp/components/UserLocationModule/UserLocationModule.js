@@ -3,9 +3,9 @@ import {
   Platform,
   StyleSheet,
   Text,
-  Image,
-  View 
+  View,
   } from 'react-native';
+  import {Button} from 'react-native-elements'
   import { connect } from 'react-redux';
 import { SearchPlaces } from '../common/SearchPlaces';
 
@@ -54,6 +54,11 @@ class UserLocation extends Component {
       {/* <View style = {styles.NavigationButtonContainer}>
         <NavigationButton next={this.NavigationButtonHandler} />
       </View> */}
+      <View style = {styles.confirm}>
+        <Button title = "CONFIRM" onPress = {()=>{this.props.navigator.dismissModal({
+          animationType: 'slide-down' // 'none' / 'slide-down' , dismiss animation for the modal (optional, default 'slide-down')
+        });}}/>
+      </View>
     </View>
   
     );
@@ -95,6 +100,14 @@ const styles = StyleSheet.create({
   mapContainerInactive: {
     height: '0%',
     marginTop: 50
+  },
+  confirm:{
+    position: 'absolute',
+    width: '100%',
+    bottom: '4%',
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   NavigationButtonContainer:{
     position: 'absolute',
