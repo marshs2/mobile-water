@@ -10,8 +10,7 @@ import {
 import {getGPSLocation} from '../../services/GPSServices';
 import UserLocationMapView from '../common/UserLocationMapView';
 import {currentLocationUpdate,searchOnFocus} from '../../actions/Actions';
-import NavigationButton from '../common/NavigationButton';
-import GPSButton from '../common/GPSButton'
+import {screens} from '../../constants/constants'
 
 // Questions
 import Questions from './Questions';
@@ -43,7 +42,7 @@ class AddressRefinement extends Component {
     if (event.type == 'NavBarButtonPress') { // this is the event type for button presses
       if (event.id == 'next') { // this is the same id field from the static navigatorButtons definition
         this.props.navigator.push({
-          screen: 'AgencySelectionModule', // unique ID registered with Navigation.registerScreen
+          screen: screens.AGENCYSELECTIONMODULE, // unique ID registered with Navigation.registerScreen
           title: 'AgencySelectionModule', // title of the screen as appears in the nav bar (optional)
         }); 
       }
@@ -58,7 +57,7 @@ class AddressRefinement extends Component {
   NavigationButtonHandler = () => {
 
     this.props.navigator.showModal({
-      screen: 'UserLocationScreen', // unique ID registered with Navigation.registerScreen
+      screen: screens.USERLOCATION, // unique ID registered with Navigation.registerScreen
       title: 'User Location', // title of the screen as appears in the nav bar (optional)
       animationType: 'slide-up', // 'none' / 'slide-up' , appear animation for the modal (optional, default 'slide-up')
     }); 

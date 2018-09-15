@@ -3,6 +3,7 @@ import { registerScreens } from './screens';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import {masterReducer} from './reducers/CounterReducer';
+import {screens} from './constants/constants'
 
 import { 
   createStore, 
@@ -22,7 +23,7 @@ Navigation.startTabBasedApp({
     tabs: [
       {
         label: 'Book Now',
-        screen: 'BookingModuleScreen',
+        screen: screens.BOOKINGMODULE,
         title: 'Book Can',
         icon: require('./images/bookingTabbarIcon/icon.png'),
         // selectedIcon: require('./images/water.png')
