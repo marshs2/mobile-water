@@ -54,8 +54,8 @@ class UserLocation extends Component {
       {/* <View style = {styles.NavigationButtonContainer}>
         <NavigationButton next={this.NavigationButtonHandler} />
       </View> */}
-      <View style = {styles.confirm}>
-        <Button title = "CONFIRM" onPress = {()=>{this.props.navigator.dismissModal({
+      <View style = {!this.props.search_onFocus ? styles.confirm: styles.confirmHide } >
+        <Button title = "CONFIRM"  onPress = {()=>{this.props.navigator.dismissModal({
           animationType: 'slide-down' // 'none' / 'slide-down' , dismiss animation for the modal (optional, default 'slide-down')
         });}}/>
       </View>
@@ -108,6 +108,10 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  confirmHide:{
+    width: '0%',
+    height: '0%',
   },
   NavigationButtonContainer:{
     position: 'absolute',
