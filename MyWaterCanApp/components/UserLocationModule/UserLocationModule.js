@@ -12,7 +12,7 @@ import { SearchPlaces } from '../common/SearchPlaces';
 import {getGPSLocation} from '../../services/GPSServices';
 import UserLocationMapView from '../common/UserLocationMapView';
 import {currentLocationUpdate,searchOnFocus, clearSearch} from '../../actions/Actions';
-import NavigationButton from '../common/NavigationButton';
+import {screens} from '../../constants/constants'
 import GPSButton from '../common/GPSButton'
 
 
@@ -28,7 +28,7 @@ class UserLocation extends Component {
   
   NavigationButtonHandler = () => {
     this.props.navigator.push({
-        screen: 'UserLocationScreen',
+        screen: screens.USERLOCATION,
         title: 'User Location'
     });
   }
