@@ -41,7 +41,11 @@ class AddressRefinement extends Component {
   }
   onNavigatorEvent(event) { // this is the onPress handler for the two buttons together
     if (event.type == 'NavBarButtonPress') { // this is the event type for button presses
-      if (event.id == 'edit') { // this is the same id field from the static navigatorButtons definition
+      if (event.id == 'next') { // this is the same id field from the static navigatorButtons definition
+        this.props.navigator.push({
+          screen: 'AgencySelectionModule', // unique ID registered with Navigation.registerScreen
+          title: 'AgencySelectionModule', // title of the screen as appears in the nav bar (optional)
+        }); 
       }
     }
   }
