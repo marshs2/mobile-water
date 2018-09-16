@@ -1,5 +1,7 @@
 import React from 'react'
 
+import RadioGroup from 'react-native-radio-buttons-group';
+
 import {
     Platform,
     StyleSheet,
@@ -8,9 +10,9 @@ import {
     Text
     } from 'react-native';
 export const  Lift = (props) => {
-    return (
-        <View>
-            <Text>Lift!</Text>
-        </View>
-    );
+        return (
+            <View>
+                {props.floor > 1 ? <RadioGroup radioButtons={props.data} onPress={props.setLiftAvailabilty} /> : <Text>Nothing</Text>}
+            </View>
+        );
 }

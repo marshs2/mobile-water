@@ -9,7 +9,7 @@ import {
 
 import {getGPSLocation} from '../../services/GPSServices';
 import UserLocationMapView from '../common/UserLocationMapView';
-import {currentLocationUpdate,searchOnFocus} from '../../actions/Actions';
+import {currentLocationUpdate,searchOnFocus, setFloor, setLiftAvailability} from '../../actions/Actions';
 import NavigationButton from '../common/NavigationButton';
 import GPSButton from '../common/GPSButton'
 
@@ -71,7 +71,10 @@ class AddressRefinement extends Component {
       
       {/* Questions */}
       <View style={styles.questionsContainer}>
-        <Questions></Questions>
+        <Questions 
+          floor = {this.props.floor} setFloor={this.props.setFloor} 
+          liftAvailability = {this.props.liftAvailability} setLiftAvailability = {this.props.setLiftAvailability}
+        ></Questions>
       </View>  
 
       {/* Address Additonal Details */}
