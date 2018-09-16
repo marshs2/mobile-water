@@ -10,6 +10,7 @@ import {
   import {canIncrementer,canDecrementer, initialLoad, emergencyChange, bookNow} from '../../actions/Actions';
   import { CanQuantity } from '../common/CanQuantity';
   import { EmergencyBooking } from '../common/EmergencyBooking';
+  import {screens} from '../../constants/constants';
  class BookingModule extends React.Component {
 
 
@@ -19,7 +20,7 @@ import {
 
     bookNowHandler = () => {
       this.props.navigator.push({
-          screen: 'AddressRefinement',
+          screen: screens.ADDRESSREFINEMENT,
           title: 'Address Selection',
           navigatorStyle: {
             tabBarHidden: true

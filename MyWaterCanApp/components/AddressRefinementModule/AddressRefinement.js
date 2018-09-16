@@ -11,7 +11,9 @@ import {getGPSLocation} from '../../services/GPSServices';
 import UserLocationMapView from '../common/UserLocationMapView';
 import {currentLocationUpdate,searchOnFocus, setFloor, setLiftAvailability} from '../../actions/Actions';
 import NavigationButton from '../common/NavigationButton';
-import GPSButton from '../common/GPSButton'
+import GPSButton from '../common/GPSButton';
+import {screens} from '../../constants/constants'
+
 
 // Questions
 import Questions from './Questions';
@@ -22,8 +24,8 @@ class AddressRefinement extends Component {
   static navigatorButtons = {
     rightButtons: [
       {
-        title: 'Edit', // for a textual button, provide the button title (label)
-        id: 'edit', // id for this button, given in onNavigatorEvent(event) to help understand which button was clicked
+        title: 'NEXT', // for a textual button, provide the button title (label)
+        id: 'next', // id for this button, given in onNavigatorEvent(event) to help understand which button was clicked
         testID: 'e2e_rules', // optional, used to locate this view in end-to-end tests
         // disabled: true, // optional, used to disable the button (appears faded and doesn't interact)
         disableIconTint: true, // optional, by default the image colors are overridden and tinted to navBarButtonColor, set to true to keep the original image colors
@@ -41,7 +43,11 @@ class AddressRefinement extends Component {
   }
   onNavigatorEvent(event) { // this is the onPress handler for the two buttons together
     if (event.type == 'NavBarButtonPress') { // this is the event type for button presses
-      if (event.id == 'edit') { // this is the same id field from the static navigatorButtons definition
+      if (event.id == 'next') { // this is the same id field from the static navigatorButtons definition
+        this.props.navigator.push({
+          screen: screens.AGENCYSELECTIONMODULE, // unique ID registered with Navigation.registerScreen
+          title: 'AgencySelectionModule', // title of the screen as appears in the nav bar (optional)
+        }); 
       }
     }
   }
@@ -54,7 +60,7 @@ class AddressRefinement extends Component {
   NavigationButtonHandler = () => {
 
     this.props.navigator.showModal({
-      screen: 'UserLocationScreen', // unique ID registered with Navigation.registerScreen
+      screen: screens.USERLOCATION, // unique ID registered with Navigation.registerScreen
       title: 'User Location', // title of the screen as appears in the nav bar (optional)
       animationType: 'slide-up', // 'none' / 'slide-up' , appear animation for the modal (optional, default 'slide-up')
     }); 
@@ -87,9 +93,6 @@ class AddressRefinement extends Component {
     </View>
   
     );
-  }
-  showULM() {
-    console.log('india show ulm')
   }
 }
 

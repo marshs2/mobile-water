@@ -3,16 +3,16 @@ import {
   Platform,
   StyleSheet,
   Text,
-  Image,
-  View 
+  View,
   } from 'react-native';
+  import {Button} from 'react-native-elements'
   import { connect } from 'react-redux';
 import { SearchPlaces } from '../common/SearchPlaces';
 
 import {getGPSLocation} from '../../services/GPSServices';
 import UserLocationMapView from '../common/UserLocationMapView';
 import {currentLocationUpdate,searchOnFocus, clearSearch} from '../../actions/Actions';
-import NavigationButton from '../common/NavigationButton';
+import {screens} from '../../constants/constants'
 import GPSButton from '../common/GPSButton'
 
 
@@ -28,7 +28,7 @@ class UserLocation extends Component {
   
   NavigationButtonHandler = () => {
     this.props.navigator.push({
-        screen: 'UserLocationScreen',
+        screen: screens.USERLOCATION,
         title: 'User Location'
     });
   }
@@ -54,6 +54,11 @@ class UserLocation extends Component {
       {/* <View style = {styles.NavigationButtonContainer}>
         <NavigationButton next={this.NavigationButtonHandler} />
       </View> */}
+      <View style = {!this.props.search_onFocus ? styles.confirm: styles.confirmHide } >
+        <Button title = "CONFIRM"  onPress = {()=>{this.props.navigator.dismissModal({
+          animationType: 'slide-down' // 'none' / 'slide-down' , dismiss animation for the modal (optional, default 'slide-down')
+        });}}/>
+      </View>
     </View>
   
     );
@@ -95,6 +100,18 @@ const styles = StyleSheet.create({
   mapContainerInactive: {
     height: '0%',
     marginTop: 50
+  },
+  confirm:{
+    position: 'absolute',
+    width: '100%',
+    bottom: '4%',
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  confirmHide:{
+    width: '0%',
+    height: '0%',
   },
   NavigationButtonContainer:{
     position: 'absolute',
