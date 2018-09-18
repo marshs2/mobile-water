@@ -46,7 +46,7 @@ export default class Questions extends React.Component{
     }
 
     decrementFloor() {
-        let temp = this.state.floor - 1; 
+        let temp = this.state.floor > -1 ? this.state.floor - 1 : this.state.floor; 
         this.setState({
             floor: temp
         });

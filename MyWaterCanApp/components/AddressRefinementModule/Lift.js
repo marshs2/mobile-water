@@ -12,7 +12,7 @@ import {
 export const  Lift = (props) => {
         return (
             <View>
-                {props.floor > 1 ? <RadioGroup radioButtons={props.data} onPress={props.setLiftAvailabilty} /> : <Text>Nothing</Text>}
+                {props.floor > 1 ? <RadioGroup radioButtons={props .data} onPress={props.setLiftAvailabilty} /> : <Text>Nothing</Text>}
             </View>
         );
 }
