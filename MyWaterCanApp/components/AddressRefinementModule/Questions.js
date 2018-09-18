@@ -24,12 +24,12 @@ export default class Questions extends React.Component{
                     label: "lift option not selected"
                 },
                 {
-                    label: 'No',
+                    label: 'No Lift',
                     value: false,
                     selected: false
                 },
                 {
-                    label: 'Yes',
+                    label: 'Lift is available',
                     value: true,
                     selected: false
                 }
