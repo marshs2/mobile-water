@@ -44,7 +44,8 @@ class UserLocationMapView extends Component {
   componentDidMount() {
   }
   onRegionChangeComplete = (region) =>{
-    console.log(region) 
+    console.log(region);
+    this.props.reverseGeoCode(region.latitude, region.longitude);
     this.props.currentLocationSuccessAction({latitude: region.latitude ,longitude: region.longitude});
   }
 

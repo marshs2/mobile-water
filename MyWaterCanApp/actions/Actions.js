@@ -1,6 +1,4 @@
 
-
-
 export function loadValue(value) {
     return { type: 'INITIAL_STATE', value }
 }
@@ -46,6 +44,13 @@ export function counterFetchingSucess(value) {
     }
 }
 
+function reverseGeoCodeTrigger(responseJson) {
+    return {
+        type: 'GEOCODE_ADDRESS',
+        address: responseJson
+    }
+}
+
 export function currentLocationUpdate(value) {
     // debugger;
     if (value) {
@@ -57,6 +62,18 @@ export function currentLocationUpdate(value) {
         return { type: 'NA'};
     }
 }
+
+export function reverseGeoCode(lat = 14.8911134, lng = 76.8801239) {
+    return (dispatch) => {
+        fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + lat + ',' + lng + '&key=' + constants.API_KEY)
+        .then((response) => response.json())
+        .then((responseJson) => {
+            console.log('Address ->' + JSON.stringify(responseJson));
+            dispatch(reverseGeoCodeTrigger(responseJson));
+        })
+    };
+}
+
  export function initialLoad() {
     return (dispatch) => {
         fetch("http://ec2-13-127-170-233.ap-south-1.compute.amazonaws.com/api/v1/cans")

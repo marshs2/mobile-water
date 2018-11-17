@@ -77,6 +77,11 @@
         return Object.assign({}, state, {
           searchOnFocus: false
         })
+        case 'GEOCODE_ADDRESS':
+          return Object.assign({}, state, {
+            geocodedAddr: action.responseJson
+          });
+        
 
       default:
         return state;
