@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {colors,fontWeight} from '../../constants/helpers';
-import {Platform,Image, StyleSheet, TouchableOpacity,Text, View,AsyncStorage,FlatList,AppState} from 'react-native';
+import {Platform,Image, StyleSheet, TouchableOpacity,Text, View,AsyncStorage,FlatList,AppState,SectionList} from 'react-native';
 import { connect } from 'react-redux';
 import {screens} from '../../constants/constants'
+import { SearchBar } from 'react-native-elements'
 
 
 class AgencySelectionModule extends Component {
@@ -35,18 +36,35 @@ class AgencySelectionModule extends Component {
         </View>
     )
   }
+  sectionCell() {
+    return (
+      <View style = {styles.jobContainer}>
+        <Text style = {styles.jobTitle}>K.AMbalAgency(A711)</Text>
+      </View>
+    )
+  }
   render() {
     return (
     <View style =  {styles.container}>
-      <View style = {styles.searchContainer}>
-      </View>
+      <SearchBar
+        round
+        lightTheme
+        searchIcon={{ size: 24 }}
+        // onChangeText={someMethod}
+        // onClear={someMethod}
+        placeholder='Type Here...' />
       <View style = {styles.iamfeelinglucky}>
+      <Text style = {styles.iamfeelingluckytext}>Iam Feeling lucky</Text>
       </View>
-      <FlatList data={this.props.agencies} showsVerticalScrollIndicator={false} 
-            renderItem={({item}) =>
+         <SectionList sections = {this.props.agencies} showsVerticalScrollIndicator={false} 
+          renderSectionHeader={ ({section}) => 
+            this.sectionCell()
+          }
+          renderItem={ ({item}) => 
             this.agencyCell()
-            }
-            />
+          }
+          keyExtractor={ (item, index) => index }
+          />
      </View>
     );
   }
@@ -58,7 +76,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 function mapStateToProps(state) {
   return {
-    agencies: [ {
+    agencies: [{ title: "user name", data:[ {
       agencyName:"K.ambalAgency",
       id:"A711",
       name: "arumugam",
@@ -72,7 +90,7 @@ function mapStateToProps(state) {
       canCost: 35,
       distance:"1.5 km from your place"
     }
-    ]
+    ]}]
   };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AgencySelectionModule);
@@ -91,7 +109,19 @@ const styles = StyleSheet.create({
   iamfeelinglucky: {
     height: 50,
     width: '100%',
-    backgroundColor: 'blue'
+    backgroundColor: 'white'
+  },
+
+  iamfeelingluckytext: {
+    fontSize: 22,
+    fontWeight:  "bold",
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    marginTop: 16,
+    marginLeft: 16,
+    marginRight: 16,
+    marginBottom: 8
   },
   overlay: {
     flex: 1,
