@@ -26,14 +26,12 @@ class UserLocation extends Component {
     getGPSLocation(this.props.currentLocationSuccessAction);
   }
 
-  
   NavigationButtonHandler = () => {
     this.props.navigator.push({
         screen: screens.USERLOCATION,
         title: 'User Location'
     });
   }
-
 
   render() {
     return (

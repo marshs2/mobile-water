@@ -5,12 +5,14 @@ import {
     StyleSheet,
    TouchableOpacity,
     View,
-    Text
+    Text,
+    TextInput
     } from 'react-native';
+    // import { TextInput } from 'react-native-elements';
 export const  DoorNo = (props) => {
     return (
         <View>
-            <Text>DoorNo!</Text>
+            <TextInput placeholder = "DOORNO:"></TextInput>
         </View>
     );
 }

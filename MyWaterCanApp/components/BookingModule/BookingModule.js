@@ -11,10 +11,11 @@ import {
   import { CanQuantity } from '../common/CanQuantity';
   import { EmergencyBooking } from '../common/EmergencyBooking';
   import {screens} from '../../constants/constants';
+
  class BookingModule extends React.Component {
 
-
     componentDidMount() {
+      // ;debugger
         this.props.initialLoad();
     }
 

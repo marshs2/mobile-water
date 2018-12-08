@@ -2,6 +2,12 @@
 export function loadValue(value) {
     return { type: 'INITIAL_STATE', value }
 }
+export function agencyList(value) {
+    return { type: 'AGENCY_LIST', value }
+}
+export function setViewAgencyList(value) {
+    return { type: 'VIEW_AGENCY_LIST', value }
+}
 export function canIncrementer() {
     return { type: 'CAN_INCREMENT' }
 }
@@ -88,6 +94,26 @@ export function reverseGeoCode(lat = 14.8911134, lng = 76.8801239) {
             })
             .then((value) => {
                 return  dispatch(loadValue(value))
+            })
+            .catch((error) => {
+                console.log('errorx', error);
+            });
+    };
+} 
+export function fetchAgencyList(lat = 13.1079909, lng = 80.2432857) {
+    return (dispatch) => {
+        fetch(`http://ec2-13-127-170-233.ap-south-1.compute.amazonaws.com/api/v1/nearby-agency?lat=${lat}&long=${lng}`)
+            .then((response) => {
+               
+                console.log('response', response);
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+                return response.json()
+                // return response;
+            })
+            .then((value) => {
+                return  dispatch(agencyList(value))
             })
             .catch((error) => {
                 console.log('errorx', error);

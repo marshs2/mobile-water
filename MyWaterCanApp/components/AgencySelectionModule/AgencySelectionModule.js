@@ -3,12 +3,19 @@ import {colors,fontWeight} from '../../constants/helpers';
 import {Platform,Image, StyleSheet, TouchableOpacity,Text, View,AsyncStorage,FlatList,AppState,SectionList} from 'react-native';
 import { connect } from 'react-redux';
 import {screens} from '../../constants/constants'
-import { SearchBar } from 'react-native-elements'
+import { SearchBar, Button } from 'react-native-elements'
+import { fetchAgencyList,setViewAgencyList } from '../../actions/Actions';
 
 
 class AgencySelectionModule extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      query: "",
+  };
+  }
+  componentDidMount(){
+    this.props.getAgencyList(13.1079909,80.2432857)
   }
   
   NavigationButtonHandler = () => {
@@ -24,11 +31,11 @@ class AgencySelectionModule extends Component {
         <View style = {{backgroundColor: colors.separator, height: 1,width:'100%'}}/>
     )
   }
-  agencyCell() {
+  agencyCell(item) {
     return (
     <View style = {styles.AgencyOutterBox} >
           <View style = {styles.jobContainer}>
-            <Text style = {styles.jobTitle}>K.AMbalAgency(A711)</Text>
+            <Text style = {styles.jobTitle}>{item.agency_name}(A711)</Text>
             <Text style = {styles.jobStatus}>Status: Assigned</Text>
             <Text style = {styles.jobStatus}>Status: Assigned</Text>
             <Text style = {styles.jobStatus}>Status: Assigned</Text>
@@ -38,11 +45,19 @@ class AgencySelectionModule extends Component {
   }
   sectionCell() {
     return (
-      <View style = {styles.jobContainer}>
-        <Text style = {styles.jobTitle}>K.AMbalAgency(A711)</Text>
+      <View style = {styles.sectionContainer}>
+      <Button title = "cost" style = {styles.button}></Button>
+      <Button title = "distance" style = {styles.button}>distance</Button>
       </View>
     )
   }
+  handleQueryChange = query => {
+   this.props.setViewAgencyList(query)
+    // this.setState(state => ({ ...state, query: query || "" }))
+  }
+  handleSearchCancel = () => this.handleQueryChange("");
+  handleSearchClear = () => this.handleQueryChange("");
+        
   render() {
     return (
     <View style =  {styles.container}>
@@ -50,18 +65,19 @@ class AgencySelectionModule extends Component {
         round
         lightTheme
         searchIcon={{ size: 24 }}
-        // onChangeText={someMethod}
-        // onClear={someMethod}
+        onChangeText={this.handleQueryChange}
+        onCancel={this.handleSearchCancel}
+        onClear={this.handleSearchClear}
         placeholder='Type Here...' />
       <View style = {styles.iamfeelinglucky}>
       <Text style = {styles.iamfeelingluckytext}>Iam Feeling lucky</Text>
       </View>
-         <SectionList sections = {this.props.agencies} showsVerticalScrollIndicator={false} 
+         <SectionList sections = {this.props.tempAgencies} showsVerticalScrollIndicator={false} 
           renderSectionHeader={ ({section}) => 
             this.sectionCell()
           }
           renderItem={ ({item}) => 
-            this.agencyCell()
+            this.agencyCell(item)
           }
           keyExtractor={ (item, index) => index }
           />
@@ -72,25 +88,14 @@ class AgencySelectionModule extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    setViewAgencyList:(query)=> dispatch(setViewAgencyList(query)),
+    getAgencyList: (lat, lng) => dispatch(fetchAgencyList(lat, lng))
   };
 };
 function mapStateToProps(state) {
   return {
-    agencies: [{ title: "user name", data:[ {
-      agencyName:"K.ambalAgency",
-      id:"A711",
-      name: "arumugam",
-      canCost: 35,
-      distance:"1.5 km from your place"
-    },
-    {
-      agencyName:"K.ambalAgency",
-      id:"A711",
-      name: "arumugam",
-      canCost: 35,
-      distance:"1.5 km from your place"
-    }
-    ]}]
+    agencies: [{ title: "user name", data:state.agencyList.data}],
+    tempAgencies: [{ title: "user name", data:state.viewAgenceyList.data}]
   };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AgencySelectionModule);
@@ -101,6 +106,29 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%'
   },
+  button: {
+    // backgroundColor: 'gray',
+    // borderRadius: 5,
+    // padding: 10,
+    // marginBottom: 10,
+    // marginTop:2,
+    // shadowColor: '#303838',
+    // shadowOffset: { width: 0, height: 5 },
+    // shadowRadius: 3,
+    // shadowOpacity: 0.35,
+    height: 40,
+    width: 100,
+    // color: 'white'
+
+},
+  sectionContainer: {
+    flex: 1,
+    height: 50,
+    width: '100%',
+    backgroundColor: 'white',
+    justifyContent: 'flex-end',
+    flexDirection: 'row'
+   },
   searchContainer: {
     height: 70,
     width: '100%',

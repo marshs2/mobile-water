@@ -1,7 +1,7 @@
   const initialState = {
-    canQuantity: 25,
-    canUnit: 'Litres',
-    canCount: 2,
+    canQuantity: 20,
+    canUnit: 'Litre',
+    canCount: 5,
     upperBound: 10,
     lowerBound: 2,
     emergency: true,
@@ -11,25 +11,44 @@
     landmark: '',
     floorNo: '',
     liftAvailability:false,
-    }}
+    },
+    agencyList: {data:[]},
+    viewAgenceyList:{data:[]}
+  }
 
   export function masterReducer(state=initialState, action) {
     switch(action.type) {
       case 'INITIAL_STATE':
         return  {
-          canQuantity: action.value.defaultCanOption.quantity,
-          canUnit: action.value.defaultCanOption.unit,
-          canCount: action.value.defaultCanOption.defaultNumber,
-          emergency: action.value.emergencyBooking,
-          upperBound: action.value.upperBound,
-          lowerBound: action.value.lowerBound,
+          canQuantity: action.value.default_can_option.can_type,
+          canUnit: action.value.default_can_option.units,
+          canCount: action.value.default_can_option.default_value,
+          emergency: action.value.emergency_booking,
+          upperBound: action.value.upper_bound,
+          lowerBound: action.value.lower_bound,
           searchOnFocus: false,
           currentUserLocation: {latitude:13.0517102 ,longitude:80.1899955,
           doorNo: '',
           landmark: '',
           floorNo: '',
-          liftAvailability:false
-        }}
+          liftAvailability:false,
+        },agencyList: {data:[]},
+        viewAgenceyList:{data:[]}
+      }
+      case 'AGENCY_LIST' :
+      return Object.assign({}, state, {
+        agencyList: {data:action.value.data},
+        viewAgenceyList:{data:action.value.data}
+      })
+      case 'VIEW_AGENCY_LIST' :
+      let tempAgencies = state.agencyList.data.filter(value => {
+        console.log(value.mobile_no.includes(action.value))
+         return value.mobile_no.toLowerCase().includes(action.value.toLowerCase()) || value.agency_name.toLowerCase().includes(action.value.toLowerCase())
+      });
+      return Object.assign({}, state, {
+        viewAgenceyList:{data:tempAgencies}
+      })
+
       case 'CURRENT_LOCATION':
         return Object.assign({}, state, {
           currentUserLocation: {latitude: action.latitude,longitude: action.longitude}
@@ -71,8 +90,8 @@
         return Object.assign({}, state, {
           searchOnFocus: true
         })
-        case 'IS_LOADING':
-        return action.isloading;
+        // case 'IS_LOADING':
+        // return action.isloading;
         case 'CLEAR_SEARCH':
         return Object.assign({}, state, {
           searchOnFocus: false

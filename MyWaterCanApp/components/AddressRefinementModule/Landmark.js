@@ -5,12 +5,12 @@ import {
     StyleSheet,
    TouchableOpacity,
     View,
-    Text
+    TextInput
     } from 'react-native';
 export const  Landmark = (props) => {
     return (
         <View>
-            <Text>Landmark!</Text>
+            <TextInput placeholder = 'Landmark:'></TextInput>
         </View>
     );
 }
